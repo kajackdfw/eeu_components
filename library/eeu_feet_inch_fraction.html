@@ -7,10 +7,10 @@
 
     <template>
         <p>
-            This is a <strong>{{owner}}</strong>'s editable-fifrac-dimension.
+            This is a <strong>{{fifrac}}</strong>'s editable-fifrac-dimension.
         </p>
 
-        <input is="iron-input" bind-value="{{owner}}" placeholder="Your name here...">
+        <input is="iron-input" bind-value="{{fifrac}}" placeholder="Your name here...">
 
     </template>
 
@@ -18,9 +18,9 @@
         Polymer({
             is: "editable-fifrac-dimension",
             properties: {
-                owner: {
+                fifrac: {
                     type: String,
-                    value: "Daniel"
+                    value: "Thomas"
                 }
             }
         });
