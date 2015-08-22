@@ -1,0 +1,31 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../bower_components/iron-input/iron-input.html">
+
+
+<dom-module id="editable-fifrac-dimension">
+
+    <template>
+        <p>
+            This is a <strong>{{owner}}</strong>'s editable-fifrac-dimension.
+        </p>
+
+        <input is="iron-input" bind-value="{{owner}}" placeholder="Your name here...">
+
+    </template>
+
+    <script>
+        Polymer({
+            is: "editable-fifrac-dimension",
+            properties: {
+                owner: {
+                    type: String,
+                    value: "Daniel"
+                }
+            }
+        });
+
+
+    </script>
+
+</dom-module>
