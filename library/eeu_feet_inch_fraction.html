@@ -7,7 +7,7 @@
 
     <template>
         <p>
-            The string <strong>{{userstring}}</strong> is equal to <span>{{fifdimension}}</span> .
+            The string <strong>{{userstring}}</strong> is equal to <strong>{{fifdimension}}</strong> .
         </p>
 
         <input is="iron-input" bind-value="{{userstring}}" placeholder="Your name here...">
@@ -25,7 +25,8 @@
             },
 
             fifreset: function() {
-                this.userstring = 'Tres the ass';
+                this.userstring = 'Tres';
+                this.fifdimension = 'Ass';
             },
 
             is: "editable-fifrac-dimension",
