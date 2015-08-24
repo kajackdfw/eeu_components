@@ -10,7 +10,7 @@
             The string <strong>{{userstring}}</strong> is equal to <strong>{{fifdimension}}</strong> .
         </p>
 
-        <input is="iron-input" bind-value="{{userstring}}" placeholder="Your name here...">
+        <input is="iron-input" bind-value="{{userstring}}" placeholder="Your name here..." on-keypress="{{keypressHandler}}">
         <br />
 
         <button on-click="fifreset">Reset</button>
