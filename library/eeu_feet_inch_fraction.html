@@ -7,12 +7,12 @@
 
     <template>
         <p>
-            The string <strong>{{userString}}</strong> is equal to {{fifrac}} .
+            The string <strong>{{userstring}}</strong> is equal to <span>{{fifdimension}}</span> .
         </p>
 
-        <input is="iron-input" bind-value="{{userString}}" placeholder="Your name here...">
-        <input is="iron-input" bind-value="{{fifrac}}" type="hidden">
+        <input is="iron-input" bind-value="{{userstring}}" placeholder="Your name here...">
         <br />
+
         <button on-click="fifreset">Reset</button>
 
     </template>
@@ -20,26 +20,29 @@
     <script>
         Polymer({
             ready: function() {
-                this.fifrac = "test";
+                this.fifdimension = "Tommy";
                 console.log('Ready');
             },
+
             fifreset: function() {
-                this.userString = 'Tres the ass';
+                this.userstring = 'Tres the ass';
             },
+
             is: "editable-fifrac-dimension",
+
             properties: {
-                userString: {
+                userstring: {
                     type: String,
                     value: "Thomas"
-                },
-                fifrac: {
-                    type: String,
-                    value: "test"
                 }
             }
+
+
         });
 
 
     </script>
 
 </dom-module>
+
+
