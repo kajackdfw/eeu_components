@@ -3,14 +3,14 @@
 <link rel="import" href="../bower_components/iron-input/iron-input.html">
 
 
-<dom-module id="editable-fifrac-dimension">
+<dom-module id="editable-fifrac-dimension" >
 
     <template>
         <p>
             The string <strong>{{userstring}}</strong> is equal to <strong>{{fifdimension}}</strong> .
         </p>
 
-        <input is="iron-input" bind-value="{{userstring}}" placeholder="Your name here..." on-keypress="{{keypressHandler}}">
+        <input is="iron-input" bind-value="{{userstring}}" placeholder="Your name here..." onkeyup="userstringChanged" >
         <br />
 
         <button on-click="fifreset">Reset</button>
@@ -18,7 +18,9 @@
     </template>
 
     <script>
+
         Polymer({
+
             ready: function() {
                 this.fifdimension = "Tommy";
                 console.log('Ready');
@@ -27,6 +29,10 @@
             fifreset: function() {
                 this.userstring = 'Tres';
                 this.fifdimension = 'Ass';
+            },
+
+            userstringChanged: function() {
+                this.fifdimension = 'Calc';
             },
 
             is: "editable-fifrac-dimension",
