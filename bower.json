@@ -17,6 +17,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
     "iron-ajax": "polymerelements/iron-ajax#~1.0.4",
-    "iron-input": "polymerelements/iron-input#~1.0.5"
+    "iron-input": "polymerelements/iron-input#~1.0.5",
+    "bootstrap": "~3.3.5"
   }
 }

@@ -1,16 +1,26 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../bower_components/iron-input/iron-input.html">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
 
 
 <dom-module id="editable-fifrac-dimension" >
 
     <template>
         <p>
-            The string <strong>{{userstring}}</strong> is equal to <strong>{{fifdimension}}</strong> .
+            The string <strong>{{userstring}}</strong> .
         </p>
 
-        <input is="iron-input" bind-value="{{userstring}}" placeholder="Your name here..." on-keyup="userstringChanged" >
+        <br />
+        <br />
+
+        <div class="input-group">
+            <input is="iron-input" bind-value="{{userstring}}"  on-keyup="userstringChanged" class="form-control" aria-describedby="basic-addon2" >
+            <span class="input-group-addon" id="basic-addon2">{{fifdimension}}</span>
+        </div>
+
+        <br />
         <br />
 
         <button on-click="fifreset">Reset</button>
