@@ -10,7 +10,7 @@
             The string <strong>{{userstring}}</strong> is equal to <strong>{{fifdimension}}</strong> .
         </p>
 
-        <input is="iron-input" bind-value="{{userstring}}" placeholder="Your name here..." onkeyup="userstringChanged" >
+        <input is="iron-input" bind-value="{{userstring}}" placeholder="Your name here..." on-keyup="userstringChanged" >
         <br />
 
         <button on-click="fifreset">Reset</button>
@@ -18,6 +18,8 @@
     </template>
 
     <script>
+
+        function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
 
         Polymer({
 
@@ -32,7 +34,31 @@
             },
 
             userstringChanged: function() {
-                this.fifdimension = 'Calc';
+                var someString = this.userstring ;
+                var feet = 0;
+                var inches = 0;
+                var denominator = 64 ;
+                var numerator = 0;
+
+                if( isNumeric( someString ) )
+                {
+                    someString = Math.round( someString * 64 ) / 64 ;
+                    feet = Math.floor( someString / 12 );
+                    inch = Math.floor( someString - ( feet * 12 )) ;
+                    numerator = Math.round(( someString - ( feet * 12 ) - inch ) * denominator );
+
+                    for( denom = denominator; denom > 1 && ( numerator % 2 ) == 0 ; denom--  )
+                    {
+                        numerator = numerator / 2 ;
+                        denominator = denominator / 2 ;
+                    }
+
+                    this.fifdimension = feet + "'-" + inch + '-' + numerator + '/' + denominator + '"';
+                }
+                else
+                {
+                    this.fifdimension = '';
+                }
             },
 
             is: "editable-fifrac-dimension",
