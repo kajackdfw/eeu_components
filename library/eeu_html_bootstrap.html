@@ -59,7 +59,7 @@
                     inch = Math.floor( someString - ( feet * 12 )) ;
                     numerator = Math.round(( someString - ( feet * 12 ) - inch ) * denominator );
 
-                    for( denom = denominator; denom > 1 && ( numerator % 2 ) == 0 ; denom--  )
+                    for( denom = denominator; denom > 1 && ( numerator % 2 ) == 0 && numerator >= 1 ; denom--  )
                     {
                         numerator = numerator / 2 ;
                         denominator = denominator / 2 ;
