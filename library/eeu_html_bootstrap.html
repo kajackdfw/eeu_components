@@ -9,14 +9,18 @@
 
     <template>
         <p>
-            The string <strong>{{userstring}}</strong> .
+            Convert <strong>{{userstring}}</strong> and put in label below.
         </p>
 
         <br />
         <br />
 
         <div class="input-group">
-            <input is="iron-input" bind-value="{{userstring}}"  on-keyup="userstringChanged" class="form-control" aria-describedby="basic-addon2" >
+            <input is="iron-input"
+                   bind-value="{{userstring}}"
+                   on-keyup="userstringChanged"
+                   class="form-control"
+                   aria-describedby="basic-addon2" >
             <span class="input-group-addon" id="basic-addon2">{{fifdimension}}</span>
         </div>
 
