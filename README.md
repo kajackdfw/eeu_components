@@ -5,8 +5,8 @@ The purpose for this project is to provide a uniform set of web components for E
  inches and fractions. Each component group file is intended for one type of template, such as html or Blade, and one style library such
  as Bootstrap , or Iron Elements.
  
-1. Planned Features
- a. User Help
- b. Validation
- c. Ajax support for backend/rest service validation
+Planned Features
+1. User Help
+1. Validation
+3. Ajax support for backend/rest service validation
  
