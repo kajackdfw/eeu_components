@@ -16,11 +16,14 @@
 
         <div class="input-group">
             <input is="iron-input"
+                   name="{{field_name}}"
                    bind-value="{{userstring}}"
                    on-keyup="userstringChanged"
                    class="form-control"
-                   aria-describedby="basic-addon2" >
-            <span class="input-group-addon" id="basic-addon2">{{fifdimension}}</span>
+                   aria-describedby="basic-addon2"
+                   style="width: 8em;"
+            >
+            <span class="input-group-addon" id="basic-addon2" style="width: 8em;">{{fifdimension}}</span>
         </div>
 
         <br />
@@ -36,13 +39,14 @@
         Polymer({
 
             ready: function() {
-                this.fifdimension = "Tommy";
+                this.userstring = this.field_value;
+                this.userstringChanged();
                 console.log('Ready');
             },
 
             fifreset: function() {
-                this.userstring = 'Tres';
-                this.fifdimension = 'Ass';
+                this.userstring = '';
+                this.fifdimension = '0"';
             },
 
             userstringChanged: function() {
@@ -65,11 +69,27 @@
                         denominator = denominator / 2 ;
                     }
 
-                    this.fifdimension = feet + "'-" + inch + '-' + numerator + '/' + denominator + '"';
+                    if( feet > 0 )
+                    {
+                        this.fifdimension = feet + "'-" + inch ;
+                    }
+                    else
+                    {
+                        this.fifdimension = inch ;
+                    }
+
+                    if( numerator > 0 )
+                    {
+                        this.fifdimension = this.fifdimension + '-' + numerator + '/' + denominator + '"';
+                    }
+                    else
+                    {
+                        this.fifdimension = this.fifdimension + '"'
+                    }
                 }
                 else
                 {
-                    this.fifdimension = '';
+                    this.fifdimension = 'Invalid';
                 }
             },
 
@@ -77,8 +97,15 @@
 
             properties: {
                 userstring: {
+                    type: String
+                },
+                field_value: {
                     type: String,
-                    value: "Thomas"
+                    value: "0"
+                },
+                field_name: {
+                    type: String,
+                    value: "undefined"
                 }
             }
 
