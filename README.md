@@ -42,10 +42,9 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Planned Features
 
-1. Support Input types like fifrac ( Feet Inches and Fractions )
-2. User Input Feedback
-3. Input Validation
-4. Ajax support for backend/rest service validation, or get serialized validation info from server
+ 1. Support Input types like fifrac ( Feet Inches and Fractions )
+ 2. User Input Feedback / Front end validation messages
+ 3. Ajax support for validation via backend/rest service, or get serialized validation info from server
  
 ## Fixme / Todos
  
