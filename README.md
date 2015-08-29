@@ -5,7 +5,7 @@ The purpose for this project is to provide a uniform set of web components for E
  inches and fractions. Each component group file is intended for one type of template, such as html or Blade, and one style library such
  as Bootstrap , or Iron Elements.
  
- ## Project Status
+## Project Status
  New, Google samples working, eeu-input-dec-fifrac working
  
 ## Web Components ( html tags )
