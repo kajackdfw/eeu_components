@@ -49,6 +49,6 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
- 1. Remove the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )
+ 1. Remove the Iron Element dependency from eeu_html_bootstrap.html ( commandment #9 violation )
  2. Design a front page for index.html with links to demo pages.
- 3. Create a complete form in each demo page. 
+ 3. Create a complete form in each demo page using the appropriate css library. 
