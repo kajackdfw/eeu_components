@@ -7,7 +7,7 @@ the very same validation on the front end, to avoid making the user hit submit a
 have you gone to the trouble of submitting the entire form every time the user changes one field, so you could display 
 some input field specific error message?
 
-## Well I hope to create a design pattern that will follow these rules.
+## Well I hope to create a design pattern that will follow these commandments.
  1. Only one validation rule for each field, with no duplication, or room for differences between back and front
  2. No long JQuery scripts in the page
  3. No dependencies on framework classes like Laravel/Html Helper or ZF/Form Builder etc, only template compatibility
@@ -17,6 +17,7 @@ some input field specific error message?
  7. A submit button that will disable itself if valid flags are false
  8. All component groups will have the same HTML tags
  9. Each component group will only use one style library ( Bootrap or Paper Element or Foundation ), not 2 .
+ 10. Do not duplicate any HTML5 tags or their functionality ( wrappers or an alias may be considered )
   
 ## Polymer Web Components for forms in MVC Views 
 
