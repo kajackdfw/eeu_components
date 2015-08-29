@@ -15,6 +15,8 @@ some input field specific error message?
  5. If ajax is required in a field, it will be self contained in the web component, and the url can be passed to it.
  6. EEU fields will have a valid flag
  7. A submit button that will disable itself if valid flags are false
+ 8. All component groups will have the same HTML tags
+ 9. Each component group will only use one style library ( Bootrap or Paper Element or Foundation ), not 2 .
   
 ## Polymer Web Components for forms in MVC Views 
 
@@ -45,3 +47,8 @@ The purpose for this project is to provide a uniform set of web components for E
 3. Input Validation
 4. Ajax support for backend/rest service validation, or get serialized validation info from server
  
+## Fixme / Todos
+ 
+ 1. Remove the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )
+ 2. Design a front page for index.html with links to demo pages.
+ 3. Create a complete form in each demo page. 
