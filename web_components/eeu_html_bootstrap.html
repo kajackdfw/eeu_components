@@ -9,7 +9,7 @@
 
     <template>
         <p>
-            Convert <strong>{{userstring}}</strong> and put in label below.
+            Convert <strong>{{userstring}}</strong>
         </p>
 
         <br />
@@ -39,6 +39,20 @@
         Polymer({
 
             is: "eeu-input-dec-fifrac",
+
+            properties: {
+                userstring: {
+                    type: String
+                },
+                field_value: {
+                    type: String,
+                    value: "0"
+                },
+                field_name: {
+                    type: String,
+                    value: "undefined"
+                }
+            },
 
             ready: function() {
                 this.userstring = this.field_value;
@@ -93,24 +107,8 @@
                 {
                     this.fifdimension = 'Invalid';
                 }
-            },
-
-            properties: {
-                userstring: {
-                    type: String
-                },
-                field_value: {
-                    type: String,
-                    value: "0"
-                },
-                field_name: {
-                    type: String,
-                    value: "undefined"
-                }
             }
-
         });
-
 
     </script>
 

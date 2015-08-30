@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Polymer For MVC</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/bootstrap/js/dropdown.js" ></script>
+</head>
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <ul class="nav nav-pills">
+
+            <li role="presentation" class="active"><a href="index.html">Home</a></li>
+
+            <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Dropdown <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li role="presentation"><a data-target="views/eeu_bootstrap_demo.html">EEU HTML Bootstrap Components</a></li>
+                    <li role="presentation"><a data-target="views/eeu_iron_demo.html">EEU HTML Iron Components</a></li>
+                </ul>
+            </li>
+
+
+            <li role="presentation">
+                <a href="https://github.com/kajackdfw/eeu_components" target="_blank">
+                    Get The Code
+                </a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    Content of the document......
+</div>
+
+
+<script>
+
+    $( document ).ready(function() {
+        $('.dropdown-toggle').dropdown();
+        alert('Ready');
+    });
+
+
+
+</script>
+</body>
+</html>

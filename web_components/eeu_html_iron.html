@@ -5,23 +5,25 @@
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
 
 
-<dom-module id="editable-fifrac-dimension" >
+<dom-module id="eeu-input-dec-fifrac" >
 
     <template>
         <p>
-            Convert <strong>{{userstring}}</strong> and put in label below.
+            Convert <strong>{{userstring}}</strong>
         </p>
 
         <br />
 
         <div class="input-group">
             <input is="iron-input"
+                   name="{{field_name}}"
                    bind-value="{{userstring}}"
                    on-keyup="userstringChanged"
                    class="form-control"
                    aria-describedby="basic-addon2"
-            >
-            <span class="input-group-addon" id="basic-addon2">{{fifdimension}}</span>
+                   style="width: 7em;"
+                    >
+            <span class="input-group-addon" id="basic-addon2" style="width: 7em;">{{fifdimension}}</span>
         </div>
 
         <br />
@@ -36,14 +38,31 @@
 
         Polymer({
 
+            is: "eeu-input-dec-fifrac",
+
+            properties: {
+                userstring: {
+                    type: String
+                },
+                field_value: {
+                    type: String,
+                    value: "0"
+                },
+                field_name: {
+                    type: String,
+                    value: "undefined"
+                }
+            },
+
             ready: function() {
-                this.fifdimension = "Tommy";
+                this.userstring = this.field_value;
+                this.userstringChanged();
                 console.log('Ready');
             },
 
             fifreset: function() {
-                this.userstring = 'Tres';
-                this.fifdimension = 'Ass';
+                this.userstring = '';
+                this.fifdimension = '0"';
             },
 
             userstringChanged: function() {
@@ -60,30 +79,35 @@
                     inch = Math.floor( someString - ( feet * 12 )) ;
                     numerator = Math.round(( someString - ( feet * 12 ) - inch ) * denominator );
 
-                    for( denom = denominator; denom > 1 && ( numerator % 2 ) == 0 ; denom--  )
+                    for( denom = denominator; denom > 1 && ( numerator % 2 ) == 0 && numerator >= 1 ; denom--  )
                     {
                         numerator = numerator / 2 ;
                         denominator = denominator / 2 ;
                     }
 
-                    this.fifdimension = feet + "'-" + inch + '-' + numerator + '/' + denominator + '"';
+                    if( feet > 0 )
+                    {
+                        this.fifdimension = feet + "'-" + inch ;
+                    }
+                    else
+                    {
+                        this.fifdimension = inch ;
+                    }
+
+                    if( numerator > 0 )
+                    {
+                        this.fifdimension = this.fifdimension + '-' + numerator + '/' + denominator + '"';
+                    }
+                    else
+                    {
+                        this.fifdimension = this.fifdimension + '"'
+                    }
                 }
                 else
                 {
-                    this.fifdimension = '';
-                }
-            },
-
-            is: "editable-fifrac-dimension",
-
-            properties: {
-                userstring: {
-                    type: String,
-                    value: "Thomas"
+                    this.fifdimension = 'Invalid';
                 }
             }
-
-
         });
 
 

@@ -2,14 +2,15 @@
 
 ## What I hope to accomplish with this
 
-How many times have built data models with validation rules on the backend, and had to put in some unfamiliar js library to do 
-the very same validation on the front end, to avoid making the user hit submit and then seeing a red error message. Or 
-have you gone to the trouble of submitting the entire form every time the user changes one field, so you could display 
-some input field specific error message?
+How many times have you built data models with validation rules on the backend, and later had to put in some unfamiliar js 
+library to do almost the same validation on the front end, to avoid making the user hit submit to see the a red error messages. Or 
+have you gone to the trouble of creating a backend service so you could submitting the entire form every time the user changes one
+field, so you could display the backend error messages before the user hits the submit button? 
+
 
 ## Well I hope to create a design pattern that will follow these commandments.
  1. Only one validation rule for each field, with no duplication, or room for differences between back and front
- 2. No long JQuery scripts in the page
+ 2. Minimal to no JQuery scripts in the page ( some required for bootstrap components of course, but not Paper Elements )
  3. No dependencies on framework classes like Laravel/Html Helper or ZF/Form Builder etc, only template compatibility
  4. Simple to use custom HTML tags
  5. If ajax is required in a field, it will be self contained in the web component, and the url can be passed to it.
@@ -22,7 +23,7 @@ some input field specific error message?
 ## Polymer Web Components for forms in MVC Views 
 
 The purpose for this project is to provide a uniform set of web components for English Engineering Unit type form fields such as feet
- inches and fractions and eliminate the duplication of validation code on front and backend, by utilizing a rest 
+ inches and fractions, and eliminate the duplication of validation code on front and backend, by utilizing a rest 
  service call in some components to validate a web component field as the user types in a value. Each component group file 
  is intended for one type of template, such as html or Blade, and one style library such as Bootstrap , or Iron Elements.
  
