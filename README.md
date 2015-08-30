@@ -7,7 +7,16 @@ library to do almost the same validation on the front end, to avoid making the u
 have you gone to the trouble of creating a backend service so you could submitting the entire form every time the user changes one
 field, so you could display the backend error messages before the user hits the submit button? 
 
+## Polymer Web Components for forms in MVC Application Views 
 
+The purpose for this project is to provide a uniform set of web components for English Engineering Unit type form fields such as feet
+ inches and fractions, and eliminate the duplication of validation code on front and backend, by utilizing a rest 
+ service call in some components to validate a web component field as the user types in a value. Each component group file 
+ is intended for one type of template, such as html or Blade, and only one style library such as Bootstrap , or Iron Elements per 
+ group. I also hope to reduce the need for data transformers in the base application between the view and the database layer, such 
+ as when a users desired date format is different from the Unix datetime format. Other front-end data transformations will be 
+ considered.
+ 
 ## Well I hope to create a design pattern that will follow these commandments.
  1. Only one validation rule for each field, with no duplication, or room for differences between back and front
  2. Minimal to no JQuery scripts in the page ( some required for bootstrap components of course, but not Paper Elements )
@@ -15,19 +24,12 @@ field, so you could display the backend error messages before the user hits the 
  4. Simple to use custom HTML tags
  5. If ajax is required in a field, it will be self contained in the web component, and the url can be passed to it from
   the parent application's view template.
- 6. EEU fields will have a valid flag
+ 6. EEU fields will have a valid flag compatible with a Polymer event listener
  7. A submit button that will disable itself if valid flags are false
  8. All component groups will have the same HTML tags
  9. Each component group will only use one style library ( Bootrap or Paper Element or Foundation ), not 2 .
  10. Do not duplicate any HTML5 tags or their functionality ( wrappers or an alias may be considered )
   
-## Polymer Web Components for forms in MVC Application Views 
-
-The purpose for this project is to provide a uniform set of web components for English Engineering Unit type form fields such as feet
- inches and fractions, and eliminate the duplication of validation code on front and backend, by utilizing a rest 
- service call in some components to validate a web component field as the user types in a value. Each component group file 
- is intended for one type of template, such as html or Blade, and one style library such as Bootstrap , or Iron Elements.
- 
 ## Groups / Component Files
  1. eeu_html_bootstrap.html ( generic html with Bootstrap css )
  2. eeu_blade_bootstrap.html ( Laravel Compatible )
@@ -41,7 +43,8 @@ The purpose for this project is to provide a uniform set of web components for E
  2. eeu-input-fifrac-dec ( fifrac in , with field value set to decimal equivalent ) 
  3. eeu-input-rest-validated ( backend validated input field )
  4. eeu-submit-if-fields-valid
- 5. eeu-input-combo
+ 5. eeu-input-combo 
+ 6. eeu-input-unix-date ( submits unix format to app, and displays selected format to user )
  
 ## Planned Features
 
