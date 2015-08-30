@@ -1,11 +1,11 @@
 # eeu_components
 
-## What I hope to accomplish with this
+## My Gripes about MVC Apps
 
 How many times have you built data models with validation rules on the backend, and later had to put in some unfamiliar js 
 library to do almost the same validation on the front end, to avoid making the user hit submit to see the a red error messages. Or 
-have you gone to the trouble of creating a backend service so you could submitting the entire form every time the user changes one
-field, so you could display the backend error messages before the user hits the submit button? 
+have you gone to the trouble of creating a backend service so you could submit the entire form every time the user changes one
+field, so you could display the backend validation messages before the user hits the submit button? 
 
 ## Polymer Web Components for forms in MVC Application Views 
 
@@ -17,7 +17,7 @@ The purpose for this project is to provide a uniform set of web components for E
  as when a users desired date format is different from the Unix datetime format. Other front-end data transformations will be 
  considered.
  
-## Well I hope to create a design pattern that will follow these commandments.
+## Design Rules / Requirements
  1. Only one validation rule for each field, with no duplication, or room for differences between back and front
  2. Minimal to no JQuery scripts in the page ( some required for bootstrap components of course, but not Paper Elements )
  3. No dependencies on framework classes like Laravel/Html Helper or ZF/Form Builder etc, only template compatibility
@@ -51,6 +51,7 @@ The purpose for this project is to provide a uniform set of web components for E
  1. Support Input types like fifrac ( Feet Inches and Fractions )
  2. User Input Feedback / Front end validation messages
  3. Ajax support for validation via backend/rest service, or get serialized validation info from server
+ 4. Some simple input types with data transformers , such as eeu-input-unix-date
  
 ## Fixme / Todos
  
