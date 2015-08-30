@@ -13,15 +13,15 @@ field, so you could display the backend error messages before the user hits the 
  2. Minimal to no JQuery scripts in the page ( some required for bootstrap components of course, but not Paper Elements )
  3. No dependencies on framework classes like Laravel/Html Helper or ZF/Form Builder etc, only template compatibility
  4. Simple to use custom HTML tags
- 5. If ajax is required in a field, it will be self contained in the web component, and the url can be passed to it in the 
- parent application's view template.
+ 5. If ajax is required in a field, it will be self contained in the web component, and the url can be passed to it from
+  the parent application's view template.
  6. EEU fields will have a valid flag
  7. A submit button that will disable itself if valid flags are false
  8. All component groups will have the same HTML tags
  9. Each component group will only use one style library ( Bootrap or Paper Element or Foundation ), not 2 .
  10. Do not duplicate any HTML5 tags or their functionality ( wrappers or an alias may be considered )
   
-## Polymer Web Components for forms in MVC Views 
+## Polymer Web Components for forms in MVC Application Views 
 
 The purpose for this project is to provide a uniform set of web components for English Engineering Unit type form fields such as feet
  inches and fractions, and eliminate the duplication of validation code on front and backend, by utilizing a rest 
