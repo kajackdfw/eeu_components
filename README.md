@@ -13,7 +13,8 @@ field, so you could display the backend error messages before the user hits the 
  2. Minimal to no JQuery scripts in the page ( some required for bootstrap components of course, but not Paper Elements )
  3. No dependencies on framework classes like Laravel/Html Helper or ZF/Form Builder etc, only template compatibility
  4. Simple to use custom HTML tags
- 5. If ajax is required in a field, it will be self contained in the web component, and the url can be passed to it.
+ 5. If ajax is required in a field, it will be self contained in the web component, and the url can be passed to it in the 
+ parent application's view template.
  6. EEU fields will have a valid flag
  7. A submit button that will disable itself if valid flags are false
  8. All component groups will have the same HTML tags
