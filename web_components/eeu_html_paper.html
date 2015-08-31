@@ -1,20 +1,16 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../bower_components/iron-input/iron-input.html">
-<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+
 
 
 <dom-module id="eeu-input-dec-fifrac" >
 
     <template>
-        <p>
-            Convert <strong>{{userstring}}</strong>
-        </p>
 
         <br />
 
-        <div class="input-group">
+
             <input is="iron-input"
                    name="{{field_name}}"
                    bind-value="{{userstring}}"
@@ -23,12 +19,7 @@
                    aria-describedby="basic-addon2"
                    style="width: 7em;"
                     >
-            <span class="input-group-addon" id="basic-addon2" style="width: 7em;">{{fifdimension}}</span>
-        </div>
-
-        <br />
-
-        <button on-click="fifreset">Reset</button>
+            <h4>{{fifdimension}}</h4>
 
     </template>
 
