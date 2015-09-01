@@ -33,7 +33,7 @@ The purpose for this project is to provide a uniform set of web components for E
 ## Groups / Component Files
  1. eeu_html_bootstrap.html ( generic html with Bootstrap css )
  2. eeu_blade_bootstrap.html ( Laravel Compatible )
- 3. eeu_html_iron.html ( may be changed to Paper Elements )
+ 3. eeu_html_paper.html 
  
 ## Project Status
  New, Google samples working, eeu-input-dec-fifrac working
@@ -55,6 +55,8 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
- 1. Remove the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )
- 2. Design a front page for index.html with links to demo pages.
- 3. Create a complete form in each demo page using the appropriate css library. 
+ 1. Design a front page for index.html with links to demo pages.
+ 2. Create a complete form in each demo page using the appropriate css library. 
+ 
+## Updates
+ 9/1/2015 | Removed the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )

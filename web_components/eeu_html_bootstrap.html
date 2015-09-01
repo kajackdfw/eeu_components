@@ -1,8 +1,9 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
+<!-- This set of components only requires base Polymer class and Bootstrap, no Polymer CSS Elements -->
 
-<link rel="import" href="../bower_components/iron-input/iron-input.html">
+<link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+<!-- link rel="import" href="../bower_components/iron-input/iron-input.html" -->
 
 
 <dom-module id="eeu-input-dec-fifrac" >
@@ -15,6 +16,8 @@
         <br />
 
         <div class="input-group">
+
+            <!-- Iron Element method for comparison only,
             <input is="iron-input"
                    name="{{field_name}}"
                    bind-value="{{userstring}}"
@@ -22,8 +25,12 @@
                    class="form-control"
                    aria-describedby="basic-addon2"
                    style="width: 7em;"
-            >
+            > -->
+
+            <!-- use the ::input extension to Bind this native html input field to our web component -->
+            <input type="text" id="userstring" value="{{userstring::input}}" class="form-control" on-keyup="userstringChanged" aria-describedby="basic-addon2" style="width: 7em;" />
             <span class="input-group-addon" id="basic-addon2" style="width: 7em;">{{fifdimension}}</span>
+
         </div>
 
         <br />
