@@ -6,36 +6,93 @@
 <!-- link rel="import" href="../bower_components/iron-input/iron-input.html" -->
 
 
+<dom-module id="eeu-header" >
+    <template>
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+
+            <ul class="nav nav-pills">
+
+                <li role="presentation" class="" ><a href="../index.html">Home</a></li>
+
+                <li role="presentation" class="dropdown active">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                        Demo Pages <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li role="presentation">
+                            <a href="../views/eeu_bootstrap_demo.html" data-target="views/eeu_bootstrap_demo.html" >EEU HTML Bootstrap Components</a>
+                        </li>
+                        <li role="presentation">
+                            <a href="../views/eeu_paper_demo.html" data-target="views/eeu_paper_demo.html" >EEU HTML Paper Element Components</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li role="presentation">
+                    <a href="https://github.com/kajackdfw/eeu_components" target="_blank">
+                        Get The Code
+                    </a>
+                </li>
+
+                <li role="presentation">
+                    <a href="https://www.polymer-project.org/1.0/" target="_blank">
+                        Get Polymer
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+    </template>
+    <script>
+        Polymer({
+
+            is: "eeu-header",
+
+            properties: {
+                activePage: {
+                    type: String
+                }
+            },
+
+            ready: function () {
+                $('.dropdown-toggle').dropdown();
+                console.log('Header Ready');
+            }
+        });
+    </script>
+
+</dom-module>
+
+
 <dom-module id="eeu-input-dec-fifrac" >
 
     <template>
+
+        <!-- test code
         <p>
             Convert <strong>{{userstring}}</strong>
         </p>
+        -->
 
-        <br />
-
-        <div class="input-group">
-
-            <!-- Iron Element method for comparison only,
-            <input is="iron-input"
-                   name="{{field_name}}"
-                   bind-value="{{userstring}}"
-                   on-keyup="userstringChanged"
-                   class="form-control"
-                   aria-describedby="basic-addon2"
-                   style="width: 7em;"
-            > -->
-
-            <!-- use the ::input extension to Bind this native html input field to our web component -->
-            <input type="text" id="userstring" value="{{userstring::input}}" class="form-control" on-keyup="userstringChanged" aria-describedby="basic-addon2" style="width: 7em;" />
-            <span class="input-group-addon" id="basic-addon2" style="width: 7em;">{{fifdimension}}</span>
-
+        <div class="form-group">
+            <label for="userstring">{{field_label}}</label>
+            <div class="input-group">
+                <!-- use the ::input extension to Bind this native html input field to our web component -->
+                <input type="text" id="userstring"
+                       name="{{field_name}}"
+                       value="{{userstring::input}}"
+                       class="form-control"
+                       on-keyup="userstringChanged"
+                       aria-describedby="basic-addon2"
+                       style="width: 7em;" />
+                <span class="input-group-addon" id="basic-addon2" style="width: 7em;">{{fifdimension}}</span>
+            </div>
         </div>
 
-        <br />
-
+        <!-- test code
         <button on-click="fifreset">Reset</button>
+        -->
 
     </template>
 
@@ -58,6 +115,9 @@
                 field_name: {
                     type: String,
                     value: "undefined"
+                },
+                field_label: {
+                    type: String
                 }
             },
 

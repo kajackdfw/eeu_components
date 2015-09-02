@@ -4,19 +4,35 @@
     <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
     <link rel="import" href="../web_components/eeu_html_bootstrap.html">
+
+    <link rel="stylesheet" href="../css/eeu_components.css">
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="../bower_components/bootstrap/js/dropdown.js" ></script>
 </head>
-<body>
+    <body>
 
-    <br />
+        <eeu-header></eeu-header>
+        <div class="body_container">
 
-    <div class="panel panel-default" style="width: 19em;">
-        <div class="panel-body">
+            <div class="fluid">
+                <div class="col-lg-2">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Sample Vertical Form</div>
+                    <div class="panel-body">
+                        <form>
 
-            <eeu-input-dec-fifrac field_name="boardLength[1]" field_value="37.9375" ></eeu-input-dec-fifrac>
+                            <eeu-input-dec-fifrac field_name="boardThick[1]"  field_value="0.1875"  field_label="Thickness"></eeu-input-dec-fifrac>
+                            <eeu-input-dec-fifrac field_name="boardWide[1]"   field_value="3.5"     field_label="Width"    ></eeu-input-dec-fifrac>
+                            <eeu-input-dec-fifrac field_name="boardLength[1]" field_value="37.9375" field_label="Length"   ></eeu-input-dec-fifrac>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
 
         </div>
-    </div>
 
-
-</body>
+        </div>
+    </body>
 </html>
