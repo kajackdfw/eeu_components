@@ -27,7 +27,7 @@ The purpose for this project is to provide a uniform set of web components for E
  6. EEU fields will have a valid flag compatible with a Polymer event listener
  7. A submit button that will disable itself if valid flags are false
  8. All component groups will have the same HTML tags
- 9. Each component group will only use one style library ( Bootrap or Paper Element or Foundation ), not 2 .
+ 9. Each component group will only use one style library ( Bootstrap or Paper Element or Foundation ), not 2 .
  10. Do not duplicate any HTML5 tags or their functionality ( wrappers or an alias may be considered )
   
 ## Groups / Component Files

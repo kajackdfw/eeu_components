@@ -8,17 +8,18 @@
 
     <template>
 
-        <paper-input name="{{this.name}}" value="{{this.value}}" label="{{this.label}}" ></paper-input>
+        <!-- paper-input name="{{this.name}}" value="{{this.value}}" label="{{this.label}}" ></paper-input -->
 
-        <!--
+
+
         <input is="paper-input"
                name="{{name}}"
-               bind-value="{{userstring}}"
+               bind-value="{{userstring::input}}"
                on-keyup="userstringChanged"
                class="paper-input"
                style="width: 7em;"
         >
-        -->
+
 
     </template>
 
