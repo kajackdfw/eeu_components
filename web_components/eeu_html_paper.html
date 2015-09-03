@@ -1,25 +1,24 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
 
 <link rel="import" href="../bower_components/iron-input/iron-input.html">
-
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
 
 
 <dom-module id="eeu-input-dec-fifrac" >
 
     <template>
 
-        <br />
+        <paper-input name="{{this.name}}" value="{{this.value}}" label="{{this.label}}" ></paper-input>
 
-
-            <input is="iron-input"
-                   name="{{field_name}}"
-                   bind-value="{{userstring}}"
-                   on-keyup="userstringChanged"
-                   class="form-control"
-                   aria-describedby="basic-addon2"
-                   style="width: 7em;"
-                    >
-            <h4>{{fifdimension}}</h4>
+        <!--
+        <input is="paper-input"
+               name="{{name}}"
+               bind-value="{{userstring}}"
+               on-keyup="userstringChanged"
+               class="paper-input"
+               style="width: 7em;"
+        >
+        -->
 
     </template>
 
@@ -35,18 +34,18 @@
                 userstring: {
                     type: String
                 },
-                field_value: {
+                value: {
                     type: String,
                     value: "0"
                 },
-                field_name: {
+                name: {
                     type: String,
                     value: "undefined"
                 }
             },
 
             ready: function() {
-                this.userstring = this.field_value;
+                this.userstring = this.value;
                 this.userstringChanged();
                 console.log('Ready');
             },
