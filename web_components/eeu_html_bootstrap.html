@@ -76,11 +76,11 @@
         -->
 
         <div class="form-group">
-            <label for="userstring">{{field_label}}</label>
+            <label for="userstring">{{label}}</label>
             <div class="input-group">
                 <!-- use the ::input extension to Bind this native html input field to our web component -->
                 <input type="text" id="userstring"
-                       name="{{field_name}}"
+                       name="{{name}}"
                        value="{{userstring::input}}"
                        class="form-control"
                        on-keyup="userstringChanged"
@@ -108,21 +108,21 @@
                 userstring: {
                     type: String
                 },
-                field_value: {
+                value: {
                     type: String,
                     value: "0"
                 },
-                field_name: {
+                name: {
                     type: String,
                     value: "undefined"
                 },
-                field_label: {
+                label: {
                     type: String
                 }
             },
 
             ready: function() {
-                this.userstring = this.field_value;
+                this.userstring = this.value;
                 this.userstringChanged();
                 console.log('Ready');
             },
