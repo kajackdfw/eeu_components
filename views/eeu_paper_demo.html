@@ -3,12 +3,15 @@
     <head>
         <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
         <link rel="import" href="../web_components/eeu_html_paper.html">
+        <link rel="import" href="../bower_components/paper-card/paper-card.html">
         <link rel="import" href="../web_components/eeu-paper-input-feedback.html">
     </head>
     <body>
 
-        <br />
-        <paper-input-feedback name="boardLength[1]" value="37.9375" label="Length"></paper-input-feedback>
-
+        <paper-card heading="EEU paper-input-feedback">
+            <div class="card-content">
+                <paper-input-feedback rounded-name="boardLength[1]" value="37.9375" label="Length"></paper-input-feedback>
+            </div>
+        </paper-card>
     </body>
 </html>

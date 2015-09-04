@@ -18,6 +18,7 @@
     "bootstrap": "~3.3.5",
     "iron-ajax": "polymerelements/iron-ajax#~1.0.4",
     "iron-input": "polymerelements/iron-input#~1.0.5",
+    "paper-card": "PolymerElements/paper-card#~1.0.4",
     "paper-input": "PolymerElements/paper-input#~1.0.12",
     "polymer": "Polymer/polymer#^1.0.0"
   }
