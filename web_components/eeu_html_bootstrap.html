@@ -182,3 +182,81 @@
 </dom-module>
 
 
+<dom-module id="eeu-display-dec-fifrac" >
+
+    <template>
+            <span>{{fifracString}}</span>
+    </template>
+
+    <script>
+
+        function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
+
+        Polymer({
+
+            is: "eeu-display-dec-fifrac",
+
+            properties: {
+                fifracString: {
+                    type: String
+                },
+                value: {
+                    type: String,
+                    value: "0\""
+                }
+            },
+
+            ready: function() {
+                this.convertToFifrac();
+            },
+
+            convertToFifrac: function() {
+                var someString = this.value ;
+                var feet = 0;
+                var inches = 0;
+                var denominator = 64 ;
+                var numerator = 0;
+
+                if( isNumeric( someString ) )
+                {
+                    someString = Math.round( someString * 64 ) / 64 ;
+                    feet = Math.floor( someString / 12 );
+                    inch = Math.floor( someString - ( feet * 12 )) ;
+                    numerator = Math.round(( someString - ( feet * 12 ) - inch ) * denominator );
+
+                    for( denom = denominator; denom > 1 && ( numerator % 2 ) == 0 && numerator >= 1 ; denom--  )
+                    {
+                        numerator = numerator / 2 ;
+                        denominator = denominator / 2 ;
+                    }
+
+                    if( feet > 0 )
+                    {
+                        this.fifracString = feet + "'-" + inch ;
+                    }
+                    else
+                    {
+                        this.fifracString = inch ;
+                    }
+
+                    if( numerator > 0 )
+                    {
+                        this.fifracString = this.fifracString + '-' + numerator + '/' + denominator + '"';
+                    }
+                    else
+                    {
+                        this.fifracString = this.fifracString + '"'
+                    }
+                }
+                else
+                {
+                    this.fifracString = ' ';
+                }
+            }
+        });
+
+    </script>
+
+</dom-module>
+
+
