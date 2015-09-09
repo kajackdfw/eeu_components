@@ -38,13 +38,16 @@ The purpose for this project is to provide a uniform set of web components for E
 ## Project Status
  New, Google samples working, eeu-input-dec-fifrac working
  
-## Web Components ( html tags )
- 1. eeu-input-dec-fifrac ( decimal input field value with feet inches and fraction label )
- 2. eeu-input-fifrac-dec ( fifrac in , with field value set to decimal equivalent ) 
- 3. eeu-input-rest-validated ( backend validated input field )
- 4. eeu-submit-if-fields-valid
- 5. eeu-input-combo 
- 6. eeu-input-unix-date ( submits unix format to app, and displays selected format to user )
+## Web Components ( html tags ) working in eeu_html_bootstrap.html
+ 1. eeu-display-dec-fifrac ( display feet inches and fraction for a decimal value )
+ 2. eeu-input-dec-fifrac ( decimal input field value with feet inches and fraction label )
+ 
+## Web Components being considered for eeu_html_bootstrap ( html tags )
+ 1. eeu-input-fifrac-dec ( fifrac in , with field value set to decimal equivalent ) 
+ 2. eeu-input-rest-validated ( backend validated input field )
+ 3. eeu-input-combo 
+ 4. eeu-input-unix-date ( submits unix format to app, and displays selected format to user )
+ 5. eeu-submit-if-fields-valid ( eliminate need for custom jquery scripts to disable submit button )
  
 ## Planned Features
 
@@ -52,6 +55,7 @@ The purpose for this project is to provide a uniform set of web components for E
  2. User Input Feedback / Front end validation messages
  3. Ajax support for validation via backend/rest service, or get serialized validation info from server
  4. Some simple input types with data transformers , such as eeu-input-unix-date
+ 5. a Blade/Laravel compatible set of components to reduce need for data transformations between the UI and the database
  
 ## Fixme / Todos
  

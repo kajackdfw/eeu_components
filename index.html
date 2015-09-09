@@ -50,8 +50,8 @@
 </nav>
 
     <div class="body_container">
-        <div class="panel panel-default">
-            <div class="panel-heading">eeu_html_bootstrap.html Tested in Browser</div>
+        <div class="panel panel-info">
+            <div class="panel-heading"><strong>eeu_html_bootstrap.html</strong> web components</div>
             <div class="panel-body">
 
                 <table class="table">
@@ -64,16 +64,21 @@
                         <th width="10%">Chrome 44</th>
                     </tr>
                     <tr>
-                        <td>eeu-input-dec-fifrac</td>
+                        <td>eeu-display-dec-fifrac</td>
+                        <td>Display a decimal value as a feet, inches, and fraction string.</td>
                         <td></td>
                         <td></td>
-                        <td>Yes</td>
                         <td>Yes</td>
                         <td>Yes</td>
                     </tr>
                     <tr>
                         <td>eeu-input-dec-fifrac</td>
-                        <td></td>
+                        <td>
+                            An input field with a informative label that gives user feedback of feet, inches, and fraction
+                            translation of their decimal input value. The name parameter is used for a hidden field with a
+                            rounded 64ths value, so value in database/post submit will always match the fraction even when
+                            the user does not know the exact decimal equivalent of a fraction.
+                        </td>
                         <td></td>
                         <td>Yes</td>
                         <td>Yes</td>
