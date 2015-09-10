@@ -59,8 +59,8 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
- 1. Design a front page for index.html with links to demo pages.
- 2. Create a complete form in each demo page using the appropriate css library. 
+ 1. Preliminary testing of bootstrap web components in a Laravel application.
  
 ## Updates
+ 9/10/2015 | New outline of planned components on index.html page
  9/1/2015 | Removed the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )
