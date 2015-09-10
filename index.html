@@ -56,21 +56,23 @@
 
                 <table class="table">
                     <tr>
-                        <th width="15%">Component</th>
+                        <th width="15%">Web Component</th>
                         <th width="45%">Description</th>
-                        <th width="10%">IE10</th>
+                        <th width="10%">Status</th>
                         <th width="10%">IE11</th>
                         <th width="10%">Firefox 39.0</th>
                         <th width="10%">Chrome 44</th>
                     </tr>
+
                     <tr>
                         <td>eeu-display-dec-fifrac</td>
                         <td>Display a decimal value as a feet, inches, and fraction string.</td>
-                        <td></td>
+                        <td>Working</td>
                         <td></td>
                         <td>Yes</td>
                         <td>Yes</td>
                     </tr>
+
                     <tr>
                         <td>eeu-input-dec-fifrac</td>
                         <td>
@@ -79,11 +81,72 @@
                             rounded 64ths value, so value in database/post submit will always match the fraction even when
                             the user does not know the exact decimal equivalent of a fraction.
                         </td>
-                        <td></td>
+                        <td>Working</td>
                         <td>Yes</td>
                         <td>Yes</td>
                         <td>Yes</td>
                     </tr>
+
+                    <tr>
+                        <td>eeu-input-fifrac-dec</td>
+                        <td>
+                            An input field that allows feet inches and fraction text to be entered, and a decimal equivalent is
+                            submitted to app in a hidden field with the desired name param.
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>eeu-input-phone</td>
+                        <td>
+                            User enters or pastes a phone string, and it is filtered, cleaned, and or reformatted to the
+                            designated pattern. This could become just a wrapper for a possible eeu-input-regex component.
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>eeu-input-unix-date</td>
+                        <td>Has a datepicker with desired user date pattern on front, but always submits a unix value.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr>
+                        <td>eeu-input-rest-validated</td>
+                        <td>A free text field with a ajax validation built in.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>eeu-input-combo</td>
+                        <td>Similar to the eeu-input-rest-validated, but with an additional drop down of predefined values.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>eeu-submit</td>
+                        <td>A submit button that is disabled if any eeu fields are transmitting an invalid signal.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
                 </table>
             </div>
         </div>
