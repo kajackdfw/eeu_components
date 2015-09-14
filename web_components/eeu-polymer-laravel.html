@@ -1,0 +1,198 @@
+<!-- no Polymer CSS Elements required, only Laravel 5.X styles required -->
+
+<!-- put a copy of polymer in your laravel_project/public/js/polymer folder -->
+<link rel="import" href="../js/polymer/polymer.html">
+
+<!-- These files should all ready be present in your Laravel 5.X project -->
+<!-- link rel="stylesheet" href="../css/bootstrap/dist/css/bootstrap.min.css" -->
+<!-- link rel="stylesheet" href="../css/bootstrap/dist/css/bootstrap-theme.min.css" -->
+
+
+<dom-module id="eeu-input-dec-fifrac" >
+
+    <template>
+
+
+        <div class="form-group">
+
+            <template is="dom-if" if="[[label]]">
+                <label for="userstring">{{label}}</label>
+            </template>
+
+            <div class="input-group">
+                <!-- use the ::input extension to Bind this native html input field to our web component -->
+                <input type="text" id="userstring"
+                       name="{{name}}"
+                       value="{{userstring::input}}"
+                       class="form-control"
+                       on-keyup="userstringChanged"
+                       aria-describedby="basic-addon2"
+                       style="width: 7em;" />
+                <span class="input-group-addon" id="basic-addon2" style="width: 7em;">{{fifdimension}}</span>
+            </div>
+        </div>
+
+    </template>
+
+    <script>
+
+        function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
+
+        Polymer({
+
+            is: "eeu-input-dec-fifrac",
+
+            properties: {
+                userstring: {
+                    type: String
+                },
+                value: {
+                    type: String,
+                    value: "0"
+                },
+                name: {
+                    type: String,
+                    value: "undefined"
+                },
+                label: {
+                    type: String
+                }
+            },
+
+            ready: function() {
+                this.userstring = this.value;
+                this.userstringChanged();
+                console.log('Ready');
+            },
+
+            fifreset: function() {
+                this.userstring = '';
+                this.fifdimension = '0"';
+            },
+
+            userstringChanged: function() {
+                var someString = this.userstring ;
+                var feet = 0;
+                var inches = 0;
+                var denominator = 64 ;
+                var numerator = 0;
+
+                if( isNumeric( someString ) )
+                {
+                    someString = Math.round( someString * 64 ) / 64 ;
+                    feet = Math.floor( someString / 12 );
+                    inch = Math.floor( someString - ( feet * 12 )) ;
+                    numerator = Math.round(( someString - ( feet * 12 ) - inch ) * denominator );
+
+                    for( denom = denominator; denom > 1 && ( numerator % 2 ) == 0 && numerator >= 1 ; denom--  )
+                    {
+                        numerator = numerator / 2 ;
+                        denominator = denominator / 2 ;
+                    }
+
+                    if( feet > 0 )
+                    {
+                        this.fifdimension = feet + "'-" + inch ;
+                    }
+                    else
+                    {
+                        this.fifdimension = inch ;
+                    }
+
+                    if( numerator > 0 )
+                    {
+                        this.fifdimension = this.fifdimension + '-' + numerator + '/' + denominator + '"';
+                    }
+                    else
+                    {
+                        this.fifdimension = this.fifdimension + '"'
+                    }
+                }
+                else
+                {
+                    this.fifdimension = 'Invalid';
+                }
+            }
+        });
+
+    </script>
+
+</dom-module>
+
+
+<dom-module id="eeu-display-dec-fifrac" >
+
+    <template>
+        <span>{{fifracString}}</span>
+    </template>
+
+    <script>
+
+        function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
+
+        Polymer({
+
+            is: "eeu-display-dec-fifrac",
+
+            properties: {
+                fifracString: {
+                    type: String
+                },
+                value: {
+                    type: String,
+                    value: "0\""
+                }
+            },
+
+            ready: function() {
+                this.convertToFifrac();
+            },
+
+            convertToFifrac: function() {
+                var someString = this.value ;
+                var feet = 0;
+                var inches = 0;
+                var denominator = 64 ;
+                var numerator = 0;
+
+                if( isNumeric( someString ) )
+                {
+                    someString = Math.round( someString * 64 ) / 64 ;
+                    feet = Math.floor( someString / 12 );
+                    inch = Math.floor( someString - ( feet * 12 )) ;
+                    numerator = Math.round(( someString - ( feet * 12 ) - inch ) * denominator );
+
+                    for( denom = denominator; denom > 1 && ( numerator % 2 ) == 0 && numerator >= 1 ; denom--  )
+                    {
+                        numerator = numerator / 2 ;
+                        denominator = denominator / 2 ;
+                    }
+
+                    if( feet > 0 )
+                    {
+                        this.fifracString = feet + "'-" + inch ;
+                    }
+                    else
+                    {
+                        this.fifracString = inch ;
+                    }
+
+                    if( numerator > 0 )
+                    {
+                        this.fifracString = this.fifracString + '-' + numerator + '/' + denominator + '"';
+                    }
+                    else
+                    {
+                        this.fifracString = this.fifracString + '"'
+                    }
+                }
+                else
+                {
+                    this.fifracString = ' ';
+                }
+            }
+        });
+
+    </script>
+
+</dom-module>

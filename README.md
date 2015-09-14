@@ -3,7 +3,7 @@
 ## My Gripes about MVC Apps
 
 How many times have you built data models with validation rules on the backend, and later had to put in some unfamiliar js 
-library to do almost the same validation on the front end, to avoid making the user hit submit to see the a red error messages. Or 
+library to do almost the same validation on the front end, to avoid making the user having to hit the submit button to see the validation messages. Or 
 have you gone to the trouble of creating a backend service so you could submit the entire form every time the user changes one
 field, so you could display the backend validation messages before the user hits the submit button? 
 
@@ -59,8 +59,12 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
- 1. Preliminary testing of bootstrap web components in a Laravel application.
+ 1. Create a sample Blade/Bootstrap EEU web components file for Laravel developers.
+ 2. Decide witch component to build next.
+ 3. Remove any inline styles used in prototype web components.
+ 4. Installation instructions in individual web component files like the Laravel set. 
  
 ## Updates
+ 9/13/2015 | Had an excellent proof of concept test in my Laravel site with Polymer
  9/10/2015 | New outline of planned components on index.html page
  9/1/2015 | Removed the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )
