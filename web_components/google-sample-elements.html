@@ -63,3 +63,44 @@
 </dom-module>
 
 
+<dom-module id="my-element">
+    <template>
+        <div>{{messageValidationError}}</div>
+        <input type="text" value="{{message::input}}" placeholder="Type a name" on-keyup="messageChanged">
+    </template>
+    <script>
+        Polymer({
+            is: "my-element",
+            properties: {
+                message: {
+                    type: String,
+                    value: "Daniel"
+                },
+                messageValidationError: {
+                    type: String,
+                    value: "Empty"
+                },
+                minLength: {
+                    type: String,
+                    value: 2
+                },
+                maxLength: {
+                    type: String,
+                    value: 12
+                }
+            },
+            messageChanged: function() {
+                var trimmedMessage = this.message.trim();
+                if (trimmedMessage.length < this.minLength ||
+                        trimmedMessage.length > this.maxLength) {
+                    this.messageValidationError = 'Must be between ' +
+                            this.minLength + ' and ' +
+                            this.maxLength + ' characters.';
+                } else {
+                    this.messageValidationError = '';
+                }
+            }
+
+        });
+    </script>
+</dom-module>
