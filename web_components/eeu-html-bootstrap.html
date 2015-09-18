@@ -65,6 +65,71 @@
 </dom-module>
 
 
+
+<dom-module id="eeu-string">
+    <template>
+        <div class$="{{formGroupClass}}">
+            <label class="control-label" for="inputError1">{{messageValidationError}}</label>
+            <input type="text" class="form-control" id="inputError1" value="{{message::input}}" placeholder="{{label}}" on-keyup="messageChanged">
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "eeu-string",
+            properties: {
+                message: {
+                    type: String
+                },
+                messageValidationError: {
+                    type: String,
+                    value: ""
+                },
+                minLength: {
+                    type: String
+                },
+                maxLength: {
+                    type: String
+                },
+                formGroupClass: {
+                    type: String,
+                    value: "form-group"
+                },
+                label: {
+                    type: String
+                },
+                value: {
+                    type: String
+                },
+                min: {
+                    type: String
+                },
+                max: {
+                    type: String
+                }
+            },
+            messageChanged: function() {
+                var trimmedMessage = this.message.trim();
+                if (trimmedMessage.length < this.min ||
+                        trimmedMessage.length > this.max ) {
+                    this.messageValidationError = 'Must be between ' +
+                            this.min + ' and ' +
+                            this.max + ' characters.';
+                    this.formGroupClass = "formGroupClass has-error";
+                } else {
+                    this.messageValidationError = '';
+                    this.formGroupClass = "formGroupClass";
+                }
+            },
+            ready: function () {
+                this.message = this.value;
+            }
+
+        });
+    </script>
+</dom-module>
+
+
+
 <dom-module id="eeu-input-dec-fifrac" >
 
     <template>
