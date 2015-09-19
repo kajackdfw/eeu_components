@@ -114,10 +114,85 @@
                     this.messageValidationError = 'Must be between ' +
                             this.min + ' and ' +
                             this.max + ' characters.';
-                    this.formGroupClass = "formGroupClass has-error";
+                    this.formGroupClass = "form-group has-error";
+                } else {
+                    this.messageValidationError = this.label;
+                    this.formGroupClass = "form-group";
+                }
+            },
+            ready: function () {
+                this.message = this.value;
+                this.messageValidationError = this.label;
+            }
+
+        });
+    </script>
+</dom-module>
+
+
+<dom-module id="eeu-string-inline">
+    <template>
+
+            <div class="input-group">
+                <!-- use the ::input extension to Bind this native html input field to our web component -->
+                <input type="text" id="message"
+                       name="{{name}}"
+                       value="{{message::input}}"
+                       placeholder="{{label}}"
+                       class="form-control"
+                       on-keyup="messageChanged"
+                       aria-describedby="basic-addon2"
+                       style="width: 9em;" />
+                <span class="input-group-addon" id="basic-addon2a" style="width: 5em;">{{messageValidationError}}</span>
+            </div>
+
+    </template>
+    <script>
+        Polymer({
+            is: "eeu-string-inline",
+            properties: {
+                message: {
+                    type: String
+                },
+                messageValidationError: {
+                    type: String,
+                    value: ""
+                },
+                minLength: {
+                    type: String
+                },
+                maxLength: {
+                    type: String
+                },
+                inputGroupClass: {
+                    type: String,
+                    value: "input-group"
+                },
+                label: {
+                    type: String
+                },
+                value: {
+                    type: String
+                },
+                min: {
+                    type: String
+                },
+                max: {
+                    type: String
+                }
+            },
+            messageChanged: function() {
+                var trimmedMessage = this.message.trim();
+                if (trimmedMessage.length < this.min) {
+                    this.messageValidationError = this.min + ' min.';
+                    this.inputGroupClass = "input-group has-error";
+                }
+                else if( trimmedMessage.length > this.max ) {
+                    this.messageValidationError = this.max + ' max.';
+                    this.inputGroupClass = "input-group has-error";
                 } else {
                     this.messageValidationError = '';
-                    this.formGroupClass = "formGroupClass";
+                    this.inputGroupClass = "input-group has-error";
                 }
             },
             ready: function () {
