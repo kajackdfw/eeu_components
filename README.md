@@ -25,14 +25,14 @@ The purpose for this project is to provide a uniform set of web components for E
  5. If ajax is required in a field, it will be self contained in the web component, and the url can be passed to it from
   the parent application's view template.
  6. EEU fields will have a valid flag compatible with a Polymer event listener
- 7. A submit button that will disable itself if valid flags are false
+ 7. A submit button that will disable itself if other web component valid flags are false
  8. All component groups will have the same HTML tags
  9. Each component group will only use one style library ( Bootstrap or Paper Element or Foundation ), not 2 .
  10. Do not duplicate any HTML5 tags or their functionality ( wrappers or an alias may be considered )
   
 ## Groups / Component Files
  1. eeu_html_bootstrap.html ( generic html with Bootstrap css )
- 2. eeu_blade_bootstrap.html ( Laravel Compatible )
+ 2. ~~eeu_blade_bootstrap.html~~ Will move to a dedicated repo, 
  3. eeu_html_paper.html 
  
 ## Project Status
@@ -41,6 +41,7 @@ The purpose for this project is to provide a uniform set of web components for E
 ## Web Components ( html tags ) working in eeu_html_bootstrap.html
  1. eeu-display-dec-fifrac ( display feet inches and fraction for a decimal value )
  2. eeu-input-dec-fifrac ( decimal input field value with feet inches and fraction label )
+ 3. eeu-string and eeu-string-inline
  
 ## Web Components being considered for eeu_html_bootstrap ( html tags )
  1. eeu-input-fifrac-dec ( fifrac in , with field value set to decimal equivalent ) 
@@ -60,11 +61,13 @@ The purpose for this project is to provide a uniform set of web components for E
 ## Fixme / Todos
  
  1. Create a sample Blade/Bootstrap EEU web components file for Laravel developers.
- 2. Decide witch component to build next.
+ 2. Decide wich component to build next.
  3. Remove any inline styles used in prototype web components.
  4. Installation instructions in individual web component files like the Laravel set. 
  
 ## Updates
+ 9/20/2015 | eeu_blade_bootstrap.html will be forked to a new Laravel only repo.
+ 9/18/2015 | Enhanced error messages for eeu-string. eeu-string-inline needs more error red css.
  9/13/2015 | Had an excellent proof of concept test in my Laravel site with Polymer
  9/10/2015 | New outline of planned components on index.html page
  9/1/2015 | Removed the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )
