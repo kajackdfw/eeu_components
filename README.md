@@ -47,7 +47,7 @@ The purpose for this project is to provide a uniform set of web components for E
  1. eeu-input-fifrac-dec ( fifrac in , with field value set to decimal equivalent ) 
  2. eeu-input-rest-validated ( backend validated input field )
  3. eeu-input-combo 
- 4. eeu-input-unix-date ( submits unix format to app, and displays selected format to user )
+ 4. eeu-input-date ( submits unix format to app, and displays selected format to user )
  5. eeu-submit-if-fields-valid ( eliminate need for custom jquery scripts to disable submit button )
  
 ## Planned Features
@@ -55,19 +55,16 @@ The purpose for this project is to provide a uniform set of web components for E
  1. Support Input types like fifrac ( Feet Inches and Fractions )
  2. User Input Feedback / Front end validation messages
  3. Ajax support for validation via backend/rest service, or get serialized validation info from server
- 4. Some simple input types with data transformers , such as eeu-input-unix-date
- 5. a Blade/Laravel compatible set of components to reduce need for data transformations between the UI and the database
+ 4. Some simple input types with data transformers , such as eeu-input-date
  
 ## Fixme / Todos
  
- 1. Create a sample Blade/Bootstrap EEU web components file for Laravel developers.
- 2. Decide wich component to build next.
- 3. Remove any inline styles used in prototype web components.
- 4. Installation instructions in individual web component files like the Laravel set. 
+ 1. Remove any inline styles used in prototype web components.
  
 ## Updates
+ 9/21/2015 | new Laravel dedicated fork at https://github.com/kajackdfw/polymer-for-laravel  
  9/20/2015 | eeu_blade_bootstrap.html will be forked to a new Laravel only repo.
  9/18/2015 | Enhanced error messages for eeu-string. eeu-string-inline needs more error red css.
  9/13/2015 | Had an excellent proof of concept test in my Laravel site with Polymer
  9/10/2015 | New outline of planned components on index.html page
- 9/1/2015 | Removed the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )
+ 9/01/2015 | Removed the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )
