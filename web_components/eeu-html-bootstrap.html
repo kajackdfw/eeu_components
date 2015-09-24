@@ -133,7 +133,7 @@
 <dom-module id="eeu-string-inline">
     <template>
 
-            <div class="input-group">
+            <div class$="{{inputGroupClass}}">
                 <!-- use the ::input extension to Bind this native html input field to our web component -->
                 <input type="text" id="message"
                        name="{{name}}"
@@ -179,6 +179,10 @@
                 },
                 max: {
                     type: String
+                },
+                statusColor: {
+                    type: String,
+                    value: "input-group"
                 }
             },
             messageChanged: function() {
@@ -192,11 +196,12 @@
                     this.inputGroupClass = "input-group has-error";
                 } else {
                     this.messageValidationError = '';
-                    this.inputGroupClass = "input-group has-error";
+                    this.inputGroupClass = "input-group";
                 }
             },
             ready: function () {
                 this.message = this.value;
+                this.inputGroupClass = "input-group";
             }
 
         });
@@ -210,7 +215,7 @@
     <template>
         <div class="form-group">
             <label for="userstring">{{label}}</label>
-            <div class="input-group">
+            <div class$="{{statusColor}}">
                 <!-- use the ::input extension to Bind this native html input field to our web component -->
                 <input type="text" id="userstring"
                        name="{{name}}"
