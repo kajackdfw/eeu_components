@@ -208,7 +208,6 @@
 <dom-module id="eeu-input-dec-fifrac" >
 
     <template>
-
         <div class="form-group">
             <label for="userstring">{{label}}</label>
             <div class="input-group">
@@ -219,11 +218,11 @@
                        class="form-control"
                        on-keyup="userstringChanged"
                        aria-describedby="basic-addon2"
-                       style="width: 7em;" />
+                       style="width: 7em;"
+                        />
                 <span class="input-group-addon" id="basic-addon2" style="width: 7em;">{{fifdimension}}</span>
             </div>
         </div>
-
     </template>
 
     <script>
@@ -248,6 +247,17 @@
                 },
                 label: {
                     type: String
+                },
+                fstyle: {
+                    type: String
+                },
+                isValid: {
+                    type: Boolean,
+                    value: true
+                },
+                statusColor: {
+                    type: String,
+                    value: "input-group"
                 }
             },
 
@@ -299,10 +309,14 @@
                     {
                         this.fifdimension = this.fifdimension + '"'
                     }
+                    this.isValid = true ;
+                    this.statusColor = "input-group";
                 }
                 else
                 {
                     this.fifdimension = 'Invalid';
+                    this.isValid = false;
+                    this.statusColor = "input-group has-error";
                 }
             }
         });
@@ -315,7 +329,24 @@
 <dom-module id="eeu-display-dec-fifrac" >
 
     <template>
+        <style>
+            .eeu-display-dec-fifrac > input {
+                background: white;
+                width: 7em;
+            }
+
+        </style>
+
+        <template is="dom-if" if="[[isPlain]]">
             <span>{{fifracString}}</span>
+        </template>
+
+        <template is="dom-if" if="[[isInputGroup]]">
+            <div class="form-group eeu-display-dec-fifrac" >
+                <input value="{{fifracString}}" class="form-control" readonly>
+            </div>
+        </template>
+
     </template>
 
     <script>
@@ -333,11 +364,30 @@
                 value: {
                     type: String,
                     value: "0\""
+                },
+                fstyle: {
+                    type: String,
+                    value: "default"
+                },
+                isPlain: {
+                    type: Boolean,
+                    value: false
+                }
+                ,
+                isInputGroup: {
+                    type: Boolean,
+                    value: false
                 }
             },
 
             ready: function() {
                 this.convertToFifrac();
+                if( this.fstyle == 'plain' ) {
+                    this.isPlain = true ;
+                }
+                else {
+                    this.isInputGroup = true ;
+                }
             },
 
             convertToFifrac: function() {
