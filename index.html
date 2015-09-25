@@ -65,16 +65,7 @@
                     </tr>
 
                     <tr>
-                        <td>eeu-display-dec-fifrac</td>
-                        <td>Display a decimal value as a feet, inches, and fraction string.</td>
-                        <td>Working</td>
-                        <td></td>
-                        <td>Yes</td>
-                        <td>Yes</td>
-                    </tr>
-
-                    <tr>
-                        <td>eeu-input-dec-fifrac</td>
+                        <td>eeu-dec-to-frac</td>
                         <td>
                             An input field with a informative label that gives user feedback of feet, inches, and fraction
                             translation of their decimal input value. The name parameter is used for a hidden field with a
@@ -88,10 +79,28 @@
                     </tr>
 
                     <tr>
-                        <td>eeu-input-fifrac-dec</td>
+                        <td>eeu-dec-to-frac-ro</td>
+                        <td>A readonly display of a decimal to feet, inches, and fraction conversion.</td>
+                        <td>Working</td>
+                        <td></td>
+                        <td>Yes</td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr>
+                        <td>eeu-string</td>
+                        <td>A string input field with min and max character validation.</td>
+                        <td>Working</td>
+                        <td></td>
+                        <td></td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr>
+                        <td>eeu-fifrac-to-dec</td>
                         <td>
                             An input field that allows feet inches and fraction text to be entered, and a decimal equivalent is
-                            submitted to app in a hidden field with the desired name param.
+                            submitted to app on submit.
                         </td>
                         <td></td>
                         <td></td>
@@ -100,7 +109,7 @@
                     </tr>
 
                     <tr>
-                        <td>eeu-input-phone</td>
+                        <td>eeu-phone</td>
                         <td>
                             User enters or pastes a phone string, and it is filtered, cleaned, and or reformatted to the
                             designated pattern. This could become just a wrapper for a possible eeu-input-regex component.
@@ -112,8 +121,8 @@
                     </tr>
 
                     <tr>
-                        <td>eeu-input-unix-date</td>
-                        <td>Has a datepicker with desired user date pattern on front, but always submits a unix value.</td>
+                        <td>eeu-unix-date</td>
+                        <td>A datepicker with desired user date pattern on front, but always submits a unix value.</td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -121,7 +130,7 @@
                     </tr>
 
                     <tr>
-                        <td>eeu-input-rest-validated</td>
+                        <td>eeu-rest-validated</td>
                         <td>A free text field with a ajax validation built in.</td>
                         <td></td>
                         <td></td>
@@ -130,7 +139,7 @@
                     </tr>
 
                     <tr>
-                        <td>eeu-input-combo</td>
+                        <td>eeu-combo</td>
                         <td>Similar to the eeu-input-rest-validated, but with an additional drop down of predefined values.</td>
                         <td></td>
                         <td></td>
