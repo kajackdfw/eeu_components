@@ -97,6 +97,16 @@
                     </tr>
 
                     <tr>
+                        <td>eeu-string-inline</td>
+                        <td>A string input field with min and max character validation with bootstrap inline style. This
+                            function may become eeu-string with a fstyle="inline" param later. </td>
+                        <td>Working</td>
+                        <td></td>
+                        <td></td>
+                        <td>Yes</td>
+                    </tr>
+
+                    <tr>
                         <td>eeu-fifrac-to-dec</td>
                         <td>
                             An input field that allows feet inches and fraction text to be entered, and a decimal equivalent is
@@ -109,10 +119,11 @@
                     </tr>
 
                     <tr>
-                        <td>eeu-phone</td>
+                        <td>eeu-pattern</td>
                         <td>
-                            User enters or pastes a phone string, and it is filtered, cleaned, and or reformatted to the
-                            designated pattern. This could become just a wrapper for a possible eeu-input-regex component.
+                            This is a free text field with a displayed format pattern like a phone number (817)281-7673 EXT 2345,
+                            and a matching filter on the back, so a raw number 81728176732345 can be stored in the db. This will allow
+                            auto formatting for raw data coming from the db.  [999] = numeric , [AAA] for alphabetic
                         </td>
                         <td></td>
                         <td></td>
@@ -130,8 +141,17 @@
                     </tr>
 
                     <tr>
-                        <td>eeu-rest-validated</td>
+                        <td>eeu-rest-validated-input</td>
                         <td>A free text field with a ajax validation built in.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                    <tr>
+                        <td>eeu-dropdown</td>
+                        <td>A drop down with values and labels from a rest service</td>
                         <td></td>
                         <td></td>
                         <td></td>
