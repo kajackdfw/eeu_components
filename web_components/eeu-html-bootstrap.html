@@ -65,6 +65,76 @@
 </dom-module>
 
 
+<dom-module id="eeu-alert" >
+
+    <template>
+
+        <template is="dom-if" if="[[successmessage]]">
+            <div class="alert-heading-success" role="alert">
+                <i class="fa fa-thumbs-up"></i> <span>{{message}}</span>
+            </div>
+        </template>
+
+        <template is="dom-if" if="[[errormessage]]">
+            <div class="alert-heading-error" role="alert">
+                <i class="fa fa-thumbs-down"></i> <span>{{message}}</span>
+            </div>
+        </template>
+
+        <template is="dom-if" if="[[warningmessage]]">
+            <div class="alert-heading-warning" role="alert">
+                <i class="fa fa-thumbs-down"></i> <span>{{message}}</span>
+            </div>
+        </template>
+
+    </template>
+
+    <script>
+
+        Polymer({
+
+            is: "eeu-alert",
+
+            properties: {
+                message: {
+                    type: String
+                },
+                messagetype: {
+                    type: String
+                },
+                successmessage: {
+                    type: Boolean,
+                    value: false
+                },
+                warningmessage: {
+                    type: Boolean,
+                    value: false
+                },
+                errormessage: {
+                    type: Boolean,
+                    value: false
+                },
+            },
+
+            ready: function() {
+                if( this.messagetype == 'success' ) {
+                    this.successmessage = true ;
+                }
+                else if( this.messagetype == 'error' ) {
+                    this.errormessage = true ;
+                }
+                else if( this.messagetype == 'warning' )
+                {
+                    this.warningmessage = true ;
+                }
+            }
+
+
+        });
+
+    </script>
+
+
 
 <dom-module id="eeu-string">
     <template>
