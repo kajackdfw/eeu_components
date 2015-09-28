@@ -59,10 +59,10 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
- 1. Remove any inline styles used in prototype web components.
+ 1. Remove any inline style code used in the prototype web components.
  
 ## Updates
- 9/21/2015 | new Laravel dedicated fork at https://github.com/kajackdfw/polymer-for-laravel  
+ 9/27/2015 | new Laravel dedicated fork at https://github.com/kajackdfw/larapoly 
  9/20/2015 | eeu_blade_bootstrap.html will be forked to a new Laravel only repo.
  9/18/2015 | Enhanced error messages for eeu-string. eeu-string-inline needs more error red css.
  9/13/2015 | Had an excellent proof of concept test in my Laravel site with Polymer
