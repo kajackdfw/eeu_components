@@ -36,7 +36,7 @@ The purpose for this project is to provide a uniform set of web components for E
  3. eeu_html_paper.html 
  
 ## Project Status
- New, Google samples working, eeu-input-dec-fifrac working
+ Putting this on hold until late October, while completing LaraPoly for alpha release.
  
 ## Web Components ( html tags ) working in eeu_html_bootstrap.html
  1. eeu-display-dec-fifrac ( display feet inches and fraction for a decimal value )
@@ -56,6 +56,7 @@ The purpose for this project is to provide a uniform set of web components for E
  2. User Input Feedback / Front end validation messages
  3. Ajax support for validation via backend/rest service, or get serialized validation info from server
  4. Some simple input types with data transformers , such as eeu-input-date
+ 5. Request for special fields like IP numbers will be considered if request sent to kajackdfw@yahoo.com .
  
 ## Fixme / Todos
  
