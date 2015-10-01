@@ -6,6 +6,7 @@
 <!-- link rel="import" href="../bower_components/iron-input/iron-input.html" -->
 
 
+<!-- i do not recommend a header web component like this, since it is not universal, but it sure is nice here -->
 <dom-module id="eeu-header" >
     <template>
         <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -60,6 +61,62 @@
                 console.log('Header Ready');
             }
         });
+    </script>
+
+</dom-module>
+
+
+<dom-module id="eeu-double-select">
+
+    <template>
+        <div class="btn-group" role="group" aria-label="...">
+
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span>{{categoryChoice}}</span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="#">{{name}}</a></li>
+                    <li><a href="#">Dropdown link</a></li>
+                </ul>
+
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                </ul>
+            </div>
+        </div>
+    </template>
+    <script>
+        Polymer({
+            is: "eeu-double-select",
+            properties: {
+                selectData: {
+                    type: Array
+                },
+                name: {
+                    type: String
+                },
+                categoryChoice: {
+                    type: String,
+                    value: "Select Matl"
+                }
+            },
+            ready: function() {
+                    selectData = [
+                        {"firstName":"John", "lastName":"Doe"},
+                        {"firstName":"Anna", "lastName":"Smith"},
+                        {"firstName":"Peter","lastName": "Jones"}
+                    ];
+                this.name = selectData[1].firstName ;
+                $('.dropdown-toggle').dropdown();
+            },
+        });
+
     </script>
 
 </dom-module>
