@@ -80,14 +80,14 @@
             </button>
 
                 <ul class="dropdown-menu">
-                    <template is="dom-repeat" items="{{selectData}}">
+                    <template is="dom-repeat" items="{{itemChoices}}">
                         <li><a href="#" >{{item.name}}</a></li>
                     </template>
 
                     <li><a href="#"><b>Current Type : Aluminum</b></a></li>
                     <li><a href="#"><b>Change material type to ...</b></a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a on-click=newType('Aluminum') >Aluminum</a></li>
+                    <li><a on-click=newType >Aluminum</a></li>
                     <li><a href="#">Steel</a></li>
                 </ul>
 
@@ -125,12 +125,22 @@
 
                 $('.dropdown-toggle').dropdown();
             },
-            newType: function( newTypeName ) {
-                $.each( selectData, function( index, value )
+            newType: function() {
+                var newCtr = 0;
+                $.each( this.selectData, function( index, value )
                 {
-                    if( value['type'] == newTypName )
+                    if( value['type'] == "Aluminum" )
                     {
-                        typeChoices = value;
+                        newCtr = newCtr + 1 ;
+                        var newItem ;
+                        newItem['name'] = value['name'];
+                        newItem['id'] = value['id'];
+                        this.itemChoices[newCtr] = newItem;
+                        console.log( value['name'] );
+                    }
+                    else
+                    {
+                        console.log( index + ' is not aluminum!' );
                     }
                 });
 
