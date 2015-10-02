@@ -69,27 +69,30 @@
 <dom-module id="eeu-double-select">
 
     <template>
-        <div class="btn-group" role="group" aria-label="...">
 
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span>{{categoryChoice}}</span>
-                    <span class="caret"></span>
-                </button>
+        <div class="btn-group">
+
+            <input type="text" class="btn btn-default has-error" placeholder="Material Not Selected" value="{{name::input}}">
+
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+
                 <ul class="dropdown-menu">
-                    <li><a href="#">{{name}}</a></li>
-                    <li><a href="#">Dropdown link</a></li>
+                    <template is="dom-repeat" items="{{selectData}}">
+                        <li><a href="#" >{{item.name}}</a></li>
+                    </template>
+
+                    <li><a href="#"><b>Current Type : Aluminum</b></a></li>
+                    <li><a href="#"><b>Change material type to ...</b></a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a on-click=newType('Aluminum') >Aluminum</a></li>
+                    <li><a href="#">Steel</a></li>
                 </ul>
 
-            <div class="btn-group" role="group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                </ul>
-            </div>
         </div>
+
     </template>
     <script>
         Polymer({
@@ -101,20 +104,37 @@
                 name: {
                     type: String
                 },
-                categoryChoice: {
+                type: {
+                    type: String
+                },
+                typeChoice: {
                     type: String,
                     value: "Select Matl"
+                },
+                itemChoices: {
+                    type: Array
                 }
             },
             ready: function() {
-                    selectData = [
-                        {"firstName":"John", "lastName":"Doe"},
-                        {"firstName":"Anna", "lastName":"Smith"},
-                        {"firstName":"Peter","lastName": "Jones"}
-                    ];
-                this.name = selectData[1].firstName ;
+
+                this.selectData = [
+                    {"type": 'Aluminum',"name":"Angle 2\" x 2\"  1/4\"", "id":"34"},
+                    {"type": 'Aluminum',"name":"Angle 3\" x 3\"  1/4\"", "id":"35"},
+                    {"type": 'Steel',"name":"Angle 2\" x 2\"  1/4\"", "id":"64"},
+                    {"type": 'Steel',"name":"1/4\" x 2\" Bar", "id":"65"} ];
+
                 $('.dropdown-toggle').dropdown();
             },
+            newType: function( newTypeName ) {
+                $.each( selectData, function( index, value )
+                {
+                    if( value['type'] == newTypName )
+                    {
+                        typeChoices = value;
+                    }
+                });
+
+            }
         });
 
     </script>
