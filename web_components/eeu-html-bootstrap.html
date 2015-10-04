@@ -72,7 +72,7 @@
 
         <div class="btn-group">
 
-            <input type="text" class="btn btn-default has-error" placeholder="Material Not Selected" value="{{name::input}}">
+            <input type="text" class="btn btn-default has-error" placeholder="Material Not Selected" value="{{selectedName::input}} readonly">
 
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
@@ -87,8 +87,8 @@
                     <li><a href="#"><b>Current Type : Aluminum</b></a></li>
                     <li><a href="#"><b>Change material type to ...</b></a></li>
                     <li role="separator" class="divider"></li>
-                    <li><a on-click=newType >Aluminum</a></li>
-                    <li><a href="#">Steel</a></li>
+                    <li><a on-click=newtype data-type="Aluminum">Aluminum</a></li>
+                    <li><a on-click=newtype data-type="Steel">Steel</a></li>
                 </ul>
 
         </div>
@@ -101,7 +101,7 @@
                 selectData: {
                     type: Array
                 },
-                name: {
+                selectedName: {
                     type: String
                 },
                 type: {
@@ -120,30 +120,40 @@
                 this.selectData = [
                     {"type": 'Aluminum',"name":"Angle 2\" x 2\"  1/4\"", "id":"34"},
                     {"type": 'Aluminum',"name":"Angle 3\" x 3\"  1/4\"", "id":"35"},
-                    {"type": 'Steel',"name":"Angle 2\" x 2\"  1/4\"", "id":"64"},
+                    {"type": 'Steel',"name":"C6\" x 8.2", "id":"64"},
                     {"type": 'Steel',"name":"1/4\" x 2\" Bar", "id":"65"} ];
 
                 $('.dropdown-toggle').dropdown();
             },
-            newType: function() {
-                var newCtr = 0;
-                $.each( this.selectData, function( index, value )
+            newtype: function() {
+
+                var newTypeSelected = event.target.attributes['data-type'].value ;
+                console.log( 'newTypeSelected = ' + newTypeSelected );
+
+                var expectedChoices = 0;
+                $.each(this.selectData, function( index, value )
                 {
-                    if( value['type'] == "Aluminum" )
+                    if( value['type'] == newTypeSelected )
                     {
-                        newCtr = newCtr + 1 ;
-                        var newItem ;
-                        newItem['name'] = value['name'];
-                        newItem['id'] = value['id'];
-                        this.itemChoices[newCtr] = newItem;
-                        console.log( value['name'] );
-                    }
-                    else
-                    {
-                        console.log( index + ' is not aluminum!' );
+                        expectedChoices = expectedChoices + 1;
                     }
                 });
 
+                var newCtr = -1;
+                console.log('choice count = ' + expectedChoices );
+                var newArray = new Array( expectedChoices );
+                $.each( this.selectData, function( index, value )
+                {
+                    if( value['type'] == newTypeSelected )
+                    {
+                        newCtr = newCtr + 1;
+                        newArray[newCtr] = new Array(2);
+                        newArray[newCtr]['id'] = value['id'];
+                        newArray[newCtr]['name'] = value['name'];
+                        console.log( value['name'] );
+                    }
+                });
+                this.itemChoices = newArray ;
             }
         });
 
