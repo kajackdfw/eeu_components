@@ -72,7 +72,8 @@
 
         <div class="btn-group">
 
-            <input type="text" class="btn btn-default has-error" placeholder="Material Not Selected" value="{{selectedName::input}} readonly">
+            <input type="text" class="btn btn-default has-error" placeholder="[[placeholderText]]" value="[[selectedname]]" readonly >
+            <input type="hidden" value="[[selectedid]]" name="[[name]]" >
 
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="caret"></span>
@@ -80,15 +81,21 @@
             </button>
 
                 <ul class="dropdown-menu">
-                    <template is="dom-repeat" items="{{itemChoices}}">
-                        <li><a href="#" >{{item.name}}</a></li>
+
+                    <template is="dom-repeat" items="[[itemChoices]]">
+                        <li><a on-click=newselection id="{{item.id}}" >{{item.name}}</a></li>
                     </template>
 
-                    <li><a href="#"><b>Current Type : Aluminum</b></a></li>
-                    <li><a href="#"><b>Change material type to ...</b></a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a on-click=newtype data-type="Aluminum">Aluminum</a></li>
-                    <li><a on-click=newtype data-type="Steel">Steel</a></li>
+                    <template is="dom-if" if="[[typeSelected]]">
+                        <li role="separator" class="divider"></li>
+                        <li><a on-click=newtype data-type="none">Change from <b>{{typeSelected}}</b> to ...</a></li>
+                    </template>
+
+                    <template is="dom-if" if="[[noType]]">
+                        <li><a on-click=newtype data-type="Aluminum">Aluminum</a></li>
+                        <li><a on-click=newtype data-type="Steel">Steel</a></li>
+                    </template>
+
                 </ul>
 
         </div>
@@ -98,13 +105,22 @@
         Polymer({
             is: "eeu-double-select",
             properties: {
+                name: {
+                    type: String
+                },
                 selectData: {
                     type: Array
                 },
-                selectedName: {
+                typename: {
                     type: String
                 },
-                type: {
+                selectedname: {
+                    type: String
+                },
+                selectedid: {
+                    type: String
+                },
+                typeSelected: {
                     type: String
                 },
                 typeChoice: {
@@ -113,6 +129,17 @@
                 },
                 itemChoices: {
                     type: Array
+                },
+                noType: {
+                    type: Boolean,
+                    value: true
+                },
+                noSelection: {
+                    type: Boolean,
+                    value: false
+                },
+                placeholderText: {
+                    type: String
                 }
             },
             ready: function() {
@@ -121,26 +148,92 @@
                     {"type": 'Aluminum',"name":"Angle 2\" x 2\"  1/4\"", "id":"34"},
                     {"type": 'Aluminum',"name":"Angle 3\" x 3\"  1/4\"", "id":"35"},
                     {"type": 'Steel',"name":"C6\" x 8.2", "id":"64"},
-                    {"type": 'Steel',"name":"1/4\" x 2\" Bar", "id":"65"} ];
+                    {"type": 'Steel',"name":"1/4\" x 2\" Bar", "id":"65"},
+                    {"type": 'Steel',"name":"1/4\" x 3\" Bar", "id":"66"}
+                ];
+
+                // initialize typeChoices
+                var maxTypes = this.selectData.length ;
+                var typeArray = new Array( maxTypes );
+                $.each(this.selectData, function( index, value )
+                {
+                    typeArray[ value['type'] ] = value['type'] ;
+                });
+
+                this.placeholderText = 'Choose a '+ this.typename + ' Type.';
 
                 $('.dropdown-toggle').dropdown();
             },
-            newtype: function() {
+            newselection: function () {
+                if(typeof event.target.attributes['id'] !== 'undefined')
+                {
+                    var newId = Number(event.target.attributes['id'].value);
+                }
+                else
+                {
+                    var newId = 0;
+                    console.log('no Id, wtf');
+                    return ;
+                }
 
-                var newTypeSelected = event.target.attributes['data-type'].value ;
-                console.log( 'newTypeSelected = ' + newTypeSelected );
-
-                var expectedChoices = 0;
                 $.each(this.selectData, function( index, value )
                 {
-                    if( value['type'] == newTypeSelected )
+                    if( value['id'] == newId )
                     {
+                        this.selectedname = value['name'];
+                        this.selectedid = newId ;
+                        this.placeholderText = value['name'] ;
+                        console.log( newId + ' = ' + value['id'] + ', ' + value['name'] );
+                        return ;
+                    }
+                });
+
+            },
+            newtype: function() {
+
+                if(typeof event.target.attributes['data-type'] !== 'undefined')
+                {
+                    var newTypeSelected = String(event.target.attributes['data-type'].value);
+                    this.placeholderText = 'Choose a '+ this.typename ;
+                }
+                else
+                {
+                    var newTypeSelected = 'none';
+                }
+
+                if( newTypeSelected == 'none' )
+                {
+                    var newTypeSelected = 'none';
+                    this.noType = true ;
+                    this.itemChoices = new Array();
+                    this.typeSelected = '';
+                    this.placeholderText = 'Choose a '+ this.typename + ' Type.';
+                    return ;
+                }
+
+                this.typeSelected = newTypeSelected ;
+
+                var expectedChoices = 0;
+
+                console.log('each thru data');
+                $.each(this.selectData, function (index, value)
+                {
+                    if (value['type'] == newTypeSelected) {
                         expectedChoices = expectedChoices + 1;
                     }
                 });
 
+
+                if( expectedChoices > 0 )
+                {
+                    this.noType = false ;
+                }
+                else
+                {
+                    this.noType = true ;
+                }
+
                 var newCtr = -1;
-                console.log('choice count = ' + expectedChoices );
                 var newArray = new Array( expectedChoices );
                 $.each( this.selectData, function( index, value )
                 {
