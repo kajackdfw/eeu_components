@@ -1,8 +1,8 @@
 <!-- This set of components only requires base Polymer class and Bootstrap, no Polymer CSS Elements -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" >
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" >
 <!-- link rel="import" href="../bower_components/iron-input/iron-input.html" -->
 
 
@@ -70,9 +70,16 @@
 
     <template>
 
+        <style>
+            .eeu-btn-input:read-only {
+                color: black !important;
+                background: white;
+            }
+        </style>
+
         <div class="btn-group">
 
-            <input type="text" class="btn btn-default has-error" placeholder="[[placeholderText]]" value="[[selectedname]]" readonly >
+            <input type="text" class="btn  btn-default eeu-btn-input" placeholder="[[placeholdertext]]" value="[[selectedname::input]]" readonly >
             <input type="hidden" value="[[selectedid]]" name="[[name]]" >
 
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -119,7 +126,7 @@
                 },
                 selectedid: {
                     type: String
-                },
+                 },
                 typeSelected: {
                     type: String
                 },
@@ -138,14 +145,14 @@
                     type: Boolean,
                     value: false
                 },
-                placeholderText: {
+                placeholdertext: {
                     type: String
                 }
             },
             ready: function() {
 
                 this.selectData = [
-                    {"type": 'Aluminum',"name":"Angle 2\" x 2\"  1/4\"", "id":"34"},
+                    {"type": 'Aluminum',"name":"Angle 2'' x 2''  1/4''", "id":"34"},
                     {"type": 'Aluminum',"name":"Angle 3\" x 3\"  1/4\"", "id":"35"},
                     {"type": 'Steel',"name":"C6\" x 8.2", "id":"64"},
                     {"type": 'Steel',"name":"1/4\" x 2\" Bar", "id":"65"},
@@ -160,41 +167,43 @@
                     typeArray[ value['type'] ] = value['type'] ;
                 });
 
-                this.placeholderText = 'Choose a '+ this.typename + ' Type.';
+                this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
 
                 $('.dropdown-toggle').dropdown();
             },
+
             newselection: function () {
                 if(typeof event.target.attributes['id'] !== 'undefined')
                 {
                     var newId = Number(event.target.attributes['id'].value);
+                    var newName = 'processing!';
                 }
                 else
                 {
                     var newId = 0;
-                    console.log('no Id, wtf');
-                    return ;
+                    var newName = 'Choose a ' + this.typename ;
                 }
 
                 $.each(this.selectData, function( index, value )
                 {
                     if( value['id'] == newId )
                     {
-                        this.selectedname = value['name'];
-                        this.selectedid = newId ;
-                        this.placeholderText = value['name'] ;
-                        console.log( newId + ' = ' + value['id'] + ', ' + value['name'] );
-                        return ;
+                        newName =  value['name'];
                     }
                 });
 
+                this.placeholdertext = newName ;
+                this.selectedname = newName ;
+                this.selectedid   = newId ;
+
             },
+
             newtype: function() {
 
                 if(typeof event.target.attributes['data-type'] !== 'undefined')
                 {
                     var newTypeSelected = String(event.target.attributes['data-type'].value);
-                    this.placeholderText = 'Choose a '+ this.typename ;
+                    this.placeholdertext = 'Choose a '+ this.typename ;
                 }
                 else
                 {
@@ -207,7 +216,7 @@
                     this.noType = true ;
                     this.itemChoices = new Array();
                     this.typeSelected = '';
-                    this.placeholderText = 'Choose a '+ this.typename + ' Type.';
+                    this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
                     return ;
                 }
 
@@ -215,7 +224,6 @@
 
                 var expectedChoices = 0;
 
-                console.log('each thru data');
                 $.each(this.selectData, function (index, value)
                 {
                     if (value['type'] == newTypeSelected) {
@@ -243,7 +251,6 @@
                         newArray[newCtr] = new Array(2);
                         newArray[newCtr]['id'] = value['id'];
                         newArray[newCtr]['name'] = value['name'];
-                        console.log( value['name'] );
                     }
                 });
                 this.itemChoices = newArray ;
