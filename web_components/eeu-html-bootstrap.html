@@ -71,18 +71,21 @@
     <template>
 
         <style>
-            .eeu-btn-input:read-only {
-                color: black !important;
-                background: white;
+
+            .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
+                color: #555 !important;
+                background-image: none ;
+                background: white !important;
             }
+
         </style>
 
         <div class="btn-group">
 
-            <input type="text" class="btn  btn-default eeu-btn-input" placeholder="[[placeholdertext]]" value="[[selectedname::input]]" readonly >
+            <input type="text" class="btn btn-default btn-input" placeholder="[[placeholdertext]]" value="[[selectedname]]" readonly >
             <input type="hidden" value="[[selectedid]]" name="[[name]]" >
 
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 <span class="caret"></span>
                 <span class="sr-only">Toggle Dropdown</span>
             </button>
