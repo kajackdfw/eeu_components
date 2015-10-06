@@ -1,9 +1,10 @@
 <!-- This set of components only requires base Polymer class and Bootstrap, no Polymer CSS Elements -->
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" >
 <link rel="stylesheet" href="../css/bootstrap-theme.min.css" >
 
 
-<dom-module id="eeu-double-select">
+<dom-module id="larapoly-double-select">
 
     <template>
 
@@ -53,7 +54,7 @@
     </template>
     <script>
         Polymer({
-            is: "eeu-double-select",
+            is: "larapoly-double-select",
             properties: {
                 name: {
                     type: String
@@ -208,7 +209,7 @@
 </dom-module>
 
 
-<dom-module id="eeu-alert" >
+<dom-module id="larapoly-alert" >
 
     <template>
 
@@ -236,7 +237,7 @@
 
         Polymer({
 
-            is: "eeu-alert",
+            is: "larapoly-alert",
 
             properties: {
                 message: {
@@ -278,7 +279,7 @@
 </dom-module>
 
 
-<dom-module id="eeu-string">
+<dom-module id="larapoly-string">
 
     <template>
 
@@ -290,7 +291,7 @@
 
     <script>
         Polymer({
-            is: "eeu-string",
+            is: "larapoly-string",
             properties: {
                 message: {
                     type: String
@@ -344,7 +345,7 @@
 </dom-module>
 
 
-<dom-module id="eeu-string-inline">
+<dom-module id="larapoly-string-inline">
     <template>
 
         <style>
@@ -370,7 +371,7 @@
     </template>
     <script>
         Polymer({
-            is: "eeu-string-inline",
+            is: "larapoly-string-inline",
             properties: {
                 message: {
                     type: String
@@ -431,7 +432,7 @@
 
 
 
-<dom-module id="eeu-dec-to-frac" >
+<dom-module id="larapoly-dec-to-frac" >
 
     <template>
 
@@ -466,7 +467,7 @@
 
         Polymer({
 
-            is: "eeu-dec-to-frac",
+            is: "larapoly-dec-to-frac",
 
             properties: {
                 userstring: {
@@ -561,11 +562,11 @@
 </dom-module>
 
 
-<dom-module id="eeu-dec-to-frac-ro" >
+<dom-module id="larapoly-dec-to-frac-ro" >
 
     <template>
         <style>
-            .eeu-dec-to-frac-ro > input {
+            .larapoly-dec-to-frac-ro > input {
                 background: white;
                 width: 7em;
             }
@@ -576,7 +577,7 @@
         </template>
 
         <template is="dom-if" if="[[isInputGroup]]">
-            <div class="form-group eeu-dec-to-frac-ro" >
+            <div class="form-group larapoly-dec-to-frac-ro" >
                 <input value="{{fifracString}}" class="form-control" readonly>
             </div>
         </template>
@@ -589,7 +590,7 @@
 
         Polymer({
 
-            is: "eeu-dec-to-frac-ro",
+            is: "larapoly-dec-to-frac-ro",
 
             properties: {
                 fifracString: {
