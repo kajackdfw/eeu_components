@@ -78,7 +78,14 @@
                 background: white !important;
             }
 
+            .form-inline > label { width: 6em; text-align: right; }
+            .form > label { width: 6em; text-align: right; }
+
         </style>
+
+        <template is="dom-if" if="[[label]]">
+            <label class="control-label" >{{label}}</label>
+        </template>
 
         <div class="btn-group">
 
@@ -107,7 +114,6 @@
                     </template>
 
                 </ul>
-
         </div>
 
     </template>
@@ -116,6 +122,9 @@
             is: "eeu-double-select",
             properties: {
                 name: {
+                    type: String
+                },
+                label: {
                     type: String
                 },
                 selectData: {
@@ -270,20 +279,20 @@
     <template>
 
         <template is="dom-if" if="[[successmessage]]">
-            <div class="alert-heading-success" role="alert">
-                <i class="fa fa-thumbs-up"></i> <span>{{message}}</span>
+            <div class="alert alert-success" role="alert">
+                <span>{{message}}</span>
             </div>
         </template>
 
         <template is="dom-if" if="[[errormessage]]">
-            <div class="alert-heading-error" role="alert">
-                <i class="fa fa-thumbs-down"></i> <span>{{message}}</span>
+            <div class="alert alert-danger" role="alert">
+                <span>{{message}}</span>
             </div>
         </template>
 
         <template is="dom-if" if="[[warningmessage]]">
-            <div class="alert-heading-warning" role="alert">
-                <i class="fa fa-thumbs-down"></i> <span>{{message}}</span>
+            <div class="alert alert-warning" role="alert">
+                <span>{{message}}</span>
             </div>
         </template>
 
@@ -329,20 +338,22 @@
                 }
             }
 
-
         });
 
     </script>
-
+</dom-module>
 
 
 <dom-module id="eeu-string">
+
     <template>
+
         <div class$="{{formGroupClass}}">
             <label class="control-label" for="inputError1">{{messageValidationError}}</label>
             <input type="text" class="form-control" id="inputError1" value="{{message::input}}" placeholder="{{label}}" on-keyup="messageChanged">
         </div>
     </template>
+
     <script>
         Polymer({
             is: "eeu-string",
@@ -402,7 +413,12 @@
 <dom-module id="eeu-string-inline">
     <template>
 
-            <div class$="{{inputGroupClass}}">
+        <style>
+            .form-inline > label { width: 6em; text-align: right; }
+            .form > label { width: 6em; text-align: right; }
+        </style>
+
+        <div class$="{{inputGroupClass}}">
                 <!-- use the ::input extension to Bind this native html input field to our web component -->
                 <input type="text" id="message"
                        name="{{name}}"
@@ -482,8 +498,18 @@
 <dom-module id="eeu-dec-to-frac" >
 
     <template>
+
+        <style>
+            .form-inline > label { width: 6em; text-align: right; }
+            .form > label { width: 6em; text-align: right; }
+            .form-group > div > input { width: 7em; }
+            .form-group > div > .input-group-addon { width: 7em; }
+        </style>
+
         <div class="form-group">
+
             <label for="userstring">{{label}}</label>
+
             <div class$="{{statusColor}}">
                 <!-- use the ::input extension to Bind this native html input field to our web component -->
                 <input type="text" id="userstring"
@@ -492,9 +518,8 @@
                        class="form-control"
                        on-keyup="userstringChanged"
                        aria-describedby="basic-addon2"
-                       style="width: 7em;"
-                        />
-                <span class="input-group-addon" id="basic-addon2" style="width: 7em;">{{fifdimension}}</span>
+                />
+                <span class="input-group-addon" id="basic-addon2" >{{fifdimension}}</span>
             </div>
         </div>
     </template>
