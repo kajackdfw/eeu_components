@@ -65,11 +65,12 @@ The purpose for this project is to provide a uniform set of web components for E
  3. Clean up responsive form style support ( inline or non-inline style )
  
 ## Updates
- 10/06/2015 | Removed all inline style code.
- 10/04/2015 | New larapoly-double-select web component
- 9/27/2015 | new Laravel dedicated fork at https://github.com/kajackdfw/larapoly 
- 9/20/2015 | eeu_blade_bootstrap.html will be forked to a new Laravel only repo.
- 9/18/2015 | Enhanced error messages for eeu-string. eeu-string-inline needs more error red css.
- 9/13/2015 | Had an excellent proof of concept test in my Laravel site with Polymer
- 9/10/2015 | New outline of planned components on index.html page
- 9/01/2015 | Removed the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation )
+
+ 8. 10/06/2015 | Removed all inline style code. 
+ 7. 10/04/2015 | New larapoly-double-select web component 
+ 6. 9/27/2015 | new Laravel dedicated fork at https://github.com/kajackdfw/larapoly 
+ 5. 9/20/2015 | eeu_blade_bootstrap.html will be forked to a new Laravel only repo. 
+ 4. 9/18/2015 | Enhanced error messages for eeu-string. eeu-string-inline needs more error red css. 
+ 3. 9/13/2015 | Had an excellent proof of concept test in my Laravel site with Polymer 
+ 2. 9/10/2015 | New outline of planned components on index.html page 
+ 1. 9/01/2015 | Removed the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation ) 
