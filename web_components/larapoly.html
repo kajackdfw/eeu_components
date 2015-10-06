@@ -44,6 +44,9 @@
                     </template>
 
                     <template is="dom-if" if="[[noType]]">
+                        <template is="dom-repeat" items="[[typeChoices]]">
+                            <li><a on-click=newtype data-type="{{item.type}}">{{item.type}}</a></li>
+                        </template>
                         <li><a on-click=newtype data-type="Aluminum">Aluminum</a></li>
                         <li><a on-click=newtype data-type="Steel">Steel</a></li>
                     </template>
@@ -76,6 +79,9 @@
                  },
                 typeSelected: {
                     type: String
+                },
+                typeChoices: {
+                    type: Array
                 },
                 typeChoice: {
                     type: String,
@@ -111,9 +117,10 @@
                 var typeArray = new Array( maxTypes );
                 $.each(this.selectData, function( index, value )
                 {
-                    typeArray[ value['type'] ] = value['type'] ;
+                    typeArray[ value['type'] ] = value ;
                 });
-
+                this.typeChoices = typeArray ;
+                console.log( typeArray );
                 this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
 
                 $('.dropdown-toggle').dropdown();
