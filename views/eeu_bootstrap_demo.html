@@ -3,7 +3,8 @@
 <head>
     <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
     <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css">
-    <link rel="import" href="../web_components/eeu-html-bootstrap.html">
+    <link rel="import" href="../web_components/larapoly.html">
+    <link rel="import" href="../web_components/my-custom-web-components.html">
 
     <link rel="stylesheet" href="../css/eeu_components.css">
     <script src="../bower_components/jquery/dist/jquery.min.js"></script>
@@ -23,11 +24,11 @@
                         <div class="panel-heading">Sample Form</div>
                         <div class="panel-body">
                             <form class="form">
-                                <eeu-dec-to-frac name="boardThick[1]"  value="0.1875"  label="Thickness"></eeu-dec-to-frac>
-                                <eeu-dec-to-frac name="boardWide[1]"   value="3.5"     label="Width"    ></eeu-dec-to-frac>
-                                <eeu-dec-to-frac name="boardLength[1]" value="37.9375" label="Length"   ></eeu-dec-to-frac>
-                                <eeu-string name="criminal" value="Adolf" label="First Name" min="4" max="8" ></eeu-string>
-                                <eeu-double-select name="fart[2]" label="Material" typename="Material" id="64" ></eeu-double-select>
+                                <larapoly-dec-to-frac name="boardThick[1]"  value="0.1875"  label="Thickness"></larapoly-dec-to-frac>
+                                <larapoly-dec-to-frac name="boardWide[1]"   value="3.5"     label="Width"    ></larapoly-dec-to-frac>
+                                <larapoly-dec-to-frac name="boardLength[1]" value="37.9375" label="Length"   ></larapoly-dec-to-frac>
+                                <larapoly-string name="criminal" value="Adolf" label="First Name" min="4" max="8" ></larapoly-string>
+                                <larapoly-double-select name="fart[2]" label="Material" typename="Material" id="64" ></larapoly-double-select>
                             </form>
                         </div>
                     </div>
@@ -39,18 +40,18 @@
                         <div class="panel-body">
                             <form class="form-inline">
 
-                                <eeu-dec-to-frac name="boardThick[3]"  value="0.1875"  label=" "></eeu-dec-to-frac>
-                                <eeu-dec-to-frac name="boardWide[3]"   value="3.5"     label=" "    ></eeu-dec-to-frac>
-                                <eeu-dec-to-frac name="boardLength[3]" value="37.9375" label=" "   ></eeu-dec-to-frac>
+                                <larapoly-dec-to-frac name="boardThick[3]"  value="0.1875"  label=" "></larapoly-dec-to-frac>
+                                <larapoly-dec-to-frac name="boardWide[3]"   value="3.5"     label=" "    ></larapoly-dec-to-frac>
+                                <larapoly-dec-to-frac name="boardLength[3]" value="37.9375" label=" "   ></larapoly-dec-to-frac>
 
 
-                                <eeu-string-inline name="criminal" label="First Name" value="Adolf" min="4" max="8" ></eeu-string-inline>
-                                <eeu-dec-to-frac name="boardLength[4]" value="41.0625" label="Wake : "   ></eeu-dec-to-frac>
-                                <eeu-dec-to-frac-ro value="13.4375" fstyle="input_group"></eeu-dec-to-frac-ro>
-                                <eeu-dec-to-frac-ro value="9.375" fstyle="plain"></eeu-dec-to-frac-ro>
+                                <larapoly-string-inline name="criminal" label="First Name" value="Adolf" min="4" max="8" ></larapoly-string-inline>
+                                <larapoly-dec-to-frac name="boardLength[4]" value="41.0625" label="Wake : "   ></larapoly-dec-to-frac>
+                                <larapoly-dec-to-frac-ro value="13.4375" fclass="input_group"></larapoly-dec-to-frac-ro>
+                                <larapoly-dec-to-frac-ro value="9.375" fclass="plain"></larapoly-dec-to-frac-ro>
 
-                                <eeu-double-select name="fart[1]" label="Material : " typename="Material" id="65" ></eeu-double-select>
-                                <eeu-alert messagetype="error" message="You messed up" ></eeu-alert>
+                                <larapoly-double-select name="fart[1]" label="Material : " typename="Material" id="65" ></larapoly-double-select>
+                                <larapoly-alert messagetype="error" message="You messed up" ></larapoly-alert>
                             </form>
                         </div>
                     </div>

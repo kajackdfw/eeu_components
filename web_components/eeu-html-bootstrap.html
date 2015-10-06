@@ -1,69 +1,7 @@
 <!-- This set of components only requires base Polymer class and Bootstrap, no Polymer CSS Elements -->
-
 <link rel="import" href="../bower_components/polymer/polymer.html">
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.min.css" >
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" >
-<!-- link rel="import" href="../bower_components/iron-input/iron-input.html" -->
-
-
-<!-- i do not recommend a header web component like this, since it is not universal, but it sure is nice here -->
-<dom-module id="eeu-header" >
-    <template>
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-
-            <ul class="nav nav-pills">
-
-                <li role="presentation" class="" ><a href="../index.html">Home</a></li>
-
-                <li role="presentation" class="dropdown active">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                        Demo Pages <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li role="presentation">
-                            <a href="../views/eeu_bootstrap_demo.html" data-target="views/eeu_bootstrap_demo.html" >EEU HTML Bootstrap Components</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="../views/eeu_paper_demo.html" data-target="views/eeu_paper_demo.html" >EEU HTML Paper Element Components</a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li role="presentation">
-                    <a href="https://github.com/kajackdfw/eeu_components" target="_blank">
-                        Get The Code
-                    </a>
-                </li>
-
-                <li role="presentation">
-                    <a href="https://www.polymer-project.org/1.0/" target="_blank">
-                        Get Polymer
-                    </a>
-                </li>
-
-            </ul>
-
-        </nav>
-    </template>
-    <script>
-        Polymer({
-
-            is: "eeu-header",
-
-            properties: {
-                activePage: {
-                    type: String
-                }
-            },
-
-            ready: function () {
-                $('.dropdown-toggle').dropdown();
-                console.log('Header Ready');
-            }
-        });
-    </script>
-
-</dom-module>
 
 
 <dom-module id="eeu-double-select">
@@ -71,16 +9,13 @@
     <template>
 
         <style>
-
             .btn-group>.btn:first-child:not(:last-child):not(.dropdown-toggle) {
                 color: #555 !important;
                 background-image: none ;
                 background: white !important;
             }
-
             .form-inline > label { width: 6em; text-align: right; }
             .form > label { width: 6em; text-align: right; }
-
         </style>
 
         <template is="dom-if" if="[[label]]">
@@ -416,6 +351,8 @@
         <style>
             .form-inline > label { width: 6em; text-align: right; }
             .form > label { width: 6em; text-align: right; }
+            div > input { width: 9em; }
+            div > .input-group-addon { width: 5em; }
         </style>
 
         <div class$="{{inputGroupClass}}">
@@ -427,8 +364,8 @@
                        class="form-control"
                        on-keyup="messageChanged"
                        aria-describedby="basic-addon2"
-                       style="width: 9em;" />
-                <span class="input-group-addon" id="basic-addon2a" style="width: 5em;">{{messageValidationError}}</span>
+                />
+                <span class="input-group-addon" id="basic-addon2a" >{{messageValidationError}}</span>
             </div>
 
     </template>
@@ -547,7 +484,7 @@
                 label: {
                     type: String
                 },
-                fstyle: {
+                fclass: {
                     type: String
                 },
                 isValid: {
@@ -663,7 +600,7 @@
                     type: String,
                     value: "0\""
                 },
-                fstyle: {
+                fclass: {
                     type: String,
                     value: "default"
                 },
@@ -680,7 +617,7 @@
 
             ready: function() {
                 this.convertToFifrac();
-                if( this.fstyle == 'plain' ) {
+                if( this.fclass == 'plain' ) {
                     this.isPlain = true ;
                 }
                 else {

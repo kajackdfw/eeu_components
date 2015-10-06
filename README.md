@@ -60,9 +60,13 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
- 1. Remove any inline style code used in the prototype web components.
+ 1. Make larapoly-double-select 100% dynamic.
+ 2. Combine larapoly-dec-to-frac-ro code into a single larapoly-dec-to-frac with a ro=true param.
+ 3. Clean up responsive form style support ( inline or non-inline style )
  
 ## Updates
+ 10/06/2015 | Removed all inline style code.
+ 10/04/2015 | New larapoly-double-select web component
  9/27/2015 | new Laravel dedicated fork at https://github.com/kajackdfw/larapoly 
  9/20/2015 | eeu_blade_bootstrap.html will be forked to a new Laravel only repo.
  9/18/2015 | Enhanced error messages for eeu-string. eeu-string-inline needs more error red css.
