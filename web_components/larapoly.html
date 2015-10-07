@@ -47,10 +47,12 @@
 
                     <template is="dom-if" if="[[noType]]">
                         <template is="dom-repeat" items="[[typeChoices]]">
-                            <li><a on-click=newtype data-type="{{item.type}}">{{item.type}}</a></li>
+                            <li><a on-click=newtype data-type$="[[item]]">[[item]]</a></li>
                         </template>
+                        <!--
                         <li><a on-click=newtype data-type="Aluminum">Aluminum</a></li>
                         <li><a on-click=newtype data-type="Steel">Steel</a></li>
+                        -->
                     </template>
 
                 </ul>
@@ -118,29 +120,25 @@
                 var maxTypes = this.selectData.length ;
 
                 var typeArray = new Array( maxTypes );
+                var typeString = ':';
+                var typeCount = 0;
+                var typePos ;
+                var typeWord ;
                 $.each(this.selectData, function( index, value )
                 {
-                    typeArray[ value['type'] ] = value['type'] ;
+                    typeWord = ":" + value['type'] + ":";
+                    console.log( 'search for ' + typeWord );
+                    typePos = typeString.search( typeWord );
+                    if( typePos == -1 ) {
+                        typeString = typeString + value['type'] + ":";
+                    }
                 });
+                typeString = typeString.substr( 1, typeString.length - 2 );
+                typeArray = typeString.split(":");
+                console.log( typeString );
                 console.log( typeArray );
+                this.typeChoices = typeArray;
 
-                var typeCount = 0;
-                var cleanArray = [];
-                typeArray.forEach( function( value )
-                {
-                    if( value.toString.length ) {
-                        cleanArray.push( value );
-                        typeCount = typeCount + 1 ;
-                    }
-                    else
-                    {
-                        console.log( value );
-                    }
-                });
-                console.log( typeCount );
-                console.log( cleanArray );
-
-                this.typeChoices = typeArray ;
 
 
 
@@ -178,6 +176,10 @@
 
             newtype: function() {
 
+                // Type changed so empty the field
+                this.selectedname = '' ;
+                this.selectedid   = '' ;
+
                 if(typeof event.target.attributes['data-type'] !== 'undefined')
                 {
                     var newTypeSelected = String(event.target.attributes['data-type'].value);
@@ -197,6 +199,7 @@
                     this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
                     return ;
                 }
+
 
                 this.typeSelected = newTypeSelected ;
 
