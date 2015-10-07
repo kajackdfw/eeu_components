@@ -63,88 +63,81 @@
         Polymer({
             is: "larapoly-double-select",
             properties: {
-                name: {
-                    type: String
-                },
-                label: {
-                    type: String
-                },
-                selectData: {
-                    type: Array
-                },
-                typename: {
-                    type: String
-                },
-                selectedname: {
-                    type: String
-                },
-                selectedid: {
-                    type: String
-                 },
-                typeSelected: {
-                    type: String
-                },
-                typeChoices: {
-                    type: Array
-                },
-                typeChoice: {
-                    type: String,
-                    value: "Select Matl"
-                },
-                itemChoices: {
-                    type: Array
-                },
-                noType: {
-                    type: Boolean,
-                    value: true
-                },
-                noSelection: {
-                    type: Boolean,
-                    value: false
-                },
-                placeholdertext: {
-                    type: String
-                }
+                name:            { type: String },
+                label:           { type: String },
+                selectData:      { type: Array },
+                typename:        { type: String },
+                selectedname:    { type: String },
+                selectedid:      { type: String },
+                typeSelected:    { type: String },
+                typeChoices:     { type: Array },
+                typeChoice:      { type: String, value: "Select Matl" },
+                itemChoices:     { type: Array },
+                noType:          { type: Boolean, value: true },
+                noSelection:     { type: Boolean, value: false },
+                placeholdertext: { type: String }
             },
             ready: function() {
 
+                this.selectData = larapolyDoubleSelectData ;
+                if( larapolyDoubleSelectTypes.length == 0 && larapolyDoubleSelectData.length > 0 )
+                {
+                    console.log('Types are empty, so populate them!');
+                    var typePos ;
+                    var typeWord ;
+                    var typeString = ':';
+                    $.each(this.selectData, function( index, value )
+                    {
+                        typeWord = ":" + value['type'] + ":";
+
+                        typePos = typeString.search( typeWord );
+                        if( typePos == -1 ) {
+                            typeString = typeString + value['type'] + ":";
+                        }
+                    });
+                    typeString = typeString.substr( 1, typeString.length - 2 );
+                    larapolyDoubleSelectTypes = typeString.split(":");
+                    larapolyDoubleSelectTypes.sort();
+                    console.log( 'types found : ' + larapolyDoubleSelectTypes );
+                }
+                else
+                {
+                    this.typeChoices = larapolyDoubleSelectTypes;
+                }
+
+                <!--
                 this.selectData = [
                     {"type": 'Aluminum',"name":"Angle 2'' x 2''  1/4''", "id":"34"},
                     {"type": 'Aluminum',"name":"Angle 3\" x 3\"  1/4\"", "id":"35"},
-                    {"type": 'Steel',"name":"C6\" x 8.2", "id":"64"},
-                    {"type": 'Steel',"name":"1/4\" x 2\" Bar", "id":"65"},
-                    {"type": 'Steel',"name":"1/4\" x 3\" Bar", "id":"66"}
+                    {"type": 'Steel'   ,"name":"C6\" x 8.2"            , "id":"64"},
+                    {"type": 'Steel'   ,"name":"1/4\" x 2\" Bar"       , "id":"65"},
+                    {"type": 'Steel'   ,"name":"1/4\" x 3\" Bar"       , "id":"66"},
+                    {"type": 'Wood'    ,"name":"2\" x 4\" Stud"        , "id":"95"}
                 ];
+                -->
+
 
                 // initialize typeChoices
-                var maxTypes = this.selectData.length ;
-
-                var typeArray = new Array( maxTypes );
-                var typeString = ':';
-                var typeCount = 0;
-                var typePos ;
-                var typeWord ;
-                $.each(this.selectData, function( index, value )
-                {
-                    typeWord = ":" + value['type'] + ":";
-                    console.log( 'search for ' + typeWord );
-                    typePos = typeString.search( typeWord );
-                    if( typePos == -1 ) {
-                        typeString = typeString + value['type'] + ":";
-                    }
-                });
-                typeString = typeString.substr( 1, typeString.length - 2 );
-                typeArray = typeString.split(":");
-                console.log( typeString );
-                console.log( typeArray );
-                this.typeChoices = typeArray;
-
-
-
+                //var maxTypes = this.selectData.length ;
+                //var typeArray = new Array( maxTypes );
+                //var typeString = ':';
+                //var typeCount = 0;
+                //var typePos ;
+                //var typeWord ;
+                //$.each(this.selectData, function( index, value )
+                //{
+                //    typeWord = ":" + value['type'] + ":";
+                //    typePos = typeString.search( typeWord );
+                //    if( typePos == -1 ) {
+                //        typeString = typeString + value['type'] + ":";
+                //    }
+                //});
+                //typeString = typeString.substr( 1, typeString.length - 2 );
+                //typeArray = typeString.split(":");
+                //this.typeChoices = typeArray;
 
 
                 this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
-
                 $('.dropdown-toggle').dropdown();
             },
 
@@ -274,24 +267,11 @@
             is: "larapoly-alert",
 
             properties: {
-                message: {
-                    type: String
-                },
-                messagetype: {
-                    type: String
-                },
-                successmessage: {
-                    type: Boolean,
-                    value: false
-                },
-                warningmessage: {
-                    type: Boolean,
-                    value: false
-                },
-                errormessage: {
-                    type: Boolean,
-                    value: false
-                },
+                message:        { type: String },
+                messagetype:    { type: String },
+                successmessage: { type: Boolean, value: false },
+                warningmessage: { type: Boolean, value: false },
+                errormessage:   { type: Boolean, value: false },
             },
 
             ready: function() {
@@ -306,7 +286,6 @@
                     this.warningmessage = true ;
                 }
             }
-
         });
 
     </script>
@@ -318,7 +297,7 @@
     <template>
 
         <div class$="{{formGroupClass}}">
-            <label class="control-label" for="inputError1">{{messageValidationError}}</label>
+            <label class="control-label" for="inputError1">{{validationMessage}}</label>
             <input type="text" class="form-control" id="inputError1" value="{{message::input}}" placeholder="{{label}}" on-keyup="messageChanged">
         </div>
     </template>
@@ -326,56 +305,39 @@
     <script>
         Polymer({
             is: "larapoly-string",
+
             properties: {
-                message: {
-                    type: String
-                },
-                messageValidationError: {
-                    type: String,
-                    value: ""
-                },
-                minLength: {
-                    type: String
-                },
-                maxLength: {
-                    type: String
-                },
-                formGroupClass: {
-                    type: String,
-                    value: "form-group"
-                },
-                label: {
-                    type: String
-                },
-                value: {
-                    type: String
-                },
-                min: {
-                    type: String
-                },
-                max: {
-                    type: String
-                }
+                message:           { type: String },
+                validationMessage: { type: String, value: "" },
+                minLength:         { type: String },
+                maxLength:         { type: String },
+                formGroupClass:    { type: String, value: "form-group" },
+                label:             { type: String },
+                value:             { type: String },
+                min:               { type: String },
+                max:               { type: String }
             },
+
             messageChanged: function() {
                 var trimmedMessage = this.message.trim();
                 if (trimmedMessage.length < this.min || trimmedMessage.length > this.max ) {
-                    this.messageValidationError = 'Must be between ' +
+                    this.validationMessage = 'Must be between ' +
                             this.min + ' and ' +
                             this.max + ' characters.';
                     this.formGroupClass = "form-group has-error";
                 } else {
-                    this.messageValidationError = this.label;
+                    this.validationMessage = this.label;
                     this.formGroupClass = "form-group";
                 }
             },
+
             ready: function () {
                 this.message = this.value;
-                this.messageValidationError = this.label;
+                this.validationMessage = this.label;
             }
-
         });
     </script>
+
 </dom-module>
 
 
@@ -399,7 +361,7 @@
                        on-keyup="messageChanged"
                        aria-describedby="basic-addon2"
                 />
-                <span class="input-group-addon" id="basic-addon2a" >{{messageValidationError}}</span>
+                <span class="input-group-addon" id="basic-addon2a" >{{validationMessage}}</span>
             </div>
 
     </template>
@@ -407,51 +369,28 @@
         Polymer({
             is: "larapoly-string-inline",
             properties: {
-                message: {
-                    type: String
-                },
-                messageValidationError: {
-                    type: String,
-                    value: ""
-                },
-                minLength: {
-                    type: String
-                },
-                maxLength: {
-                    type: String
-                },
-                inputGroupClass: {
-                    type: String,
-                    value: "input-group"
-                },
-                label: {
-                    type: String
-                },
-                value: {
-                    type: String
-                },
-                min: {
-                    type: String
-                },
-                max: {
-                    type: String
-                },
-                statusColor: {
-                    type: String,
-                    value: "input-group"
-                }
+                message:           { type: String },
+                validationMessage: { type: String, value: "" },
+                minLength:         { type: String },
+                maxLength:         { type: String },
+                inputGroupClass:   { type: String, value: "input-group" },
+                label:             { type: String },
+                value:             { type: String },
+                min:               { type: String },
+                max:               { type: String },
+                statusColor:       { type: String, value: "input-group" }
             },
             messageChanged: function() {
                 var trimmedMessage = this.message.trim();
                 if (trimmedMessage.length < this.min) {
-                    this.messageValidationError = this.min + ' min.';
+                    this.validationMessage = this.min + ' min.';
                     this.inputGroupClass = "input-group has-error";
                 }
                 else if( trimmedMessage.length > this.max ) {
-                    this.messageValidationError = this.max + ' max.';
+                    this.validationMessage = this.max + ' max.';
                     this.inputGroupClass = "input-group has-error";
                 } else {
-                    this.messageValidationError = '';
+                    this.validationMessage = '';
                     this.inputGroupClass = "input-group";
                 }
             },
@@ -504,31 +443,13 @@
             is: "larapoly-dec-to-frac",
 
             properties: {
-                userstring: {
-                    type: String
-                },
-                value: {
-                    type: String,
-                    value: "0"
-                },
-                name: {
-                    type: String,
-                    value: "undefined"
-                },
-                label: {
-                    type: String
-                },
-                fclass: {
-                    type: String
-                },
-                isValid: {
-                    type: Boolean,
-                    value: true
-                },
-                statusColor: {
-                    type: String,
-                    value: "input-group"
-                }
+                userstring:  { type: String },
+                value:       { type: String, value: "0" },
+                name:        { type: String, value: "undefined" },
+                label:       { type: String },
+                fclass:      { type: String },
+                isValid:     { type: Boolean, value: true },
+                statusColor: { type: String, value: "input-group" }
             },
 
             ready: function() {
@@ -627,26 +548,11 @@
             is: "larapoly-dec-to-frac-ro",
 
             properties: {
-                fifracString: {
-                    type: String
-                },
-                value: {
-                    type: String,
-                    value: "0\""
-                },
-                fclass: {
-                    type: String,
-                    value: "default"
-                },
-                isPlain: {
-                    type: Boolean,
-                    value: false
-                }
-                ,
-                isInputGroup: {
-                    type: Boolean,
-                    value: false
-                }
+                fifracString: { type: String },
+                value:        { type: String, value: "0\"" },
+                fclass:       { type: String, value: "default" },
+                isPlain:      { type: Boolean, value: false },
+                isInputGroup: { type: Boolean, value: false }
             },
 
             ready: function() {

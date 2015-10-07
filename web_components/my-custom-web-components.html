@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" >
 
 
-<dom-module id="eeu-header" >
+<dom-module id="my-header" >
     <template>
         <nav class="navbar navbar-inverse navbar-fixed-top">
 
@@ -44,17 +44,14 @@
     <script>
         Polymer({
 
-            is: "eeu-header",
+            is: "my-header",
 
             properties: {
-                activePage: {
-                    type: String
-                }
+                activePage: { type: String }
             },
 
             ready: function () {
                 $('.dropdown-toggle').dropdown();
-                console.log('Header Ready');
             }
         });
     </script>
