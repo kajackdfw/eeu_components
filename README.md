@@ -60,11 +60,13 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
+ 0. Set the option selected for laravel-double-select when the id value is initially provided.
  0. Combine larapoly-dec-to-frac-ro code into a single larapoly-dec-to-frac with a ro=true param.
  0. Clean up responsive form style support ( inline or non-inline style )
  
 ## Updates
 
+ 10. 10/08/2015 | Created a demo page for web component issue 182
  9. 10/07/2015 | Made larapoly-double-select 100% dynamic. ( 580 lines in larapoly.html ) 
  8. 10/06/2015 | Removed all inline style code. 
  7. 10/04/2015 | New larapoly-double-select web component 
