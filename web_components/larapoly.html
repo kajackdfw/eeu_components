@@ -49,10 +49,6 @@
                         <template is="dom-repeat" items="[[typeChoices]]">
                             <li><a on-click=newtype data-type$="[[item]]">[[item]]</a></li>
                         </template>
-                        <!--
-                        <li><a on-click=newtype data-type="Aluminum">Aluminum</a></li>
-                        <li><a on-click=newtype data-type="Steel">Steel</a></li>
-                        -->
                     </template>
 
                 </ul>
@@ -61,7 +57,9 @@
     </template>
     <script>
         Polymer({
+
             is: "larapoly-double-select",
+
             properties: {
                 name:            { type: String },
                 label:           { type: String },
@@ -77,6 +75,7 @@
                 noSelection:     { type: Boolean, value: false },
                 placeholdertext: { type: String }
             },
+
             ready: function() {
 
                 this.selectData = larapolyDoubleSelectData ;
@@ -98,45 +97,9 @@
                     typeString = typeString.substr( 1, typeString.length - 2 );
                     larapolyDoubleSelectTypes = typeString.split(":");
                     larapolyDoubleSelectTypes.sort();
-                    console.log( 'types found : ' + larapolyDoubleSelectTypes );
-                }
-                else
-                {
-                    this.typeChoices = larapolyDoubleSelectTypes;
                 }
 
-                <!--
-                this.selectData = [
-                    {"type": 'Aluminum',"name":"Angle 2'' x 2''  1/4''", "id":"34"},
-                    {"type": 'Aluminum',"name":"Angle 3\" x 3\"  1/4\"", "id":"35"},
-                    {"type": 'Steel'   ,"name":"C6\" x 8.2"            , "id":"64"},
-                    {"type": 'Steel'   ,"name":"1/4\" x 2\" Bar"       , "id":"65"},
-                    {"type": 'Steel'   ,"name":"1/4\" x 3\" Bar"       , "id":"66"},
-                    {"type": 'Wood'    ,"name":"2\" x 4\" Stud"        , "id":"95"}
-                ];
-                -->
-
-
-                // initialize typeChoices
-                //var maxTypes = this.selectData.length ;
-                //var typeArray = new Array( maxTypes );
-                //var typeString = ':';
-                //var typeCount = 0;
-                //var typePos ;
-                //var typeWord ;
-                //$.each(this.selectData, function( index, value )
-                //{
-                //    typeWord = ":" + value['type'] + ":";
-                //    typePos = typeString.search( typeWord );
-                //    if( typePos == -1 ) {
-                //        typeString = typeString + value['type'] + ":";
-                //    }
-                //});
-                //typeString = typeString.substr( 1, typeString.length - 2 );
-                //typeArray = typeString.split(":");
-                //this.typeChoices = typeArray;
-
-
+                this.typeChoices = larapolyDoubleSelectTypes;
                 this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
                 $('.dropdown-toggle').dropdown();
             },
@@ -262,9 +225,7 @@
 
     <script>
 
-        Polymer({
-
-            is: "larapoly-alert",
+        Polymer({ is: "larapoly-alert",
 
             properties: {
                 message:        { type: String },
@@ -303,8 +264,7 @@
     </template>
 
     <script>
-        Polymer({
-            is: "larapoly-string",
+        Polymer({ is: "larapoly-string",
 
             properties: {
                 message:           { type: String },
@@ -366,8 +326,9 @@
 
     </template>
     <script>
-        Polymer({
-            is: "larapoly-string-inline",
+
+        Polymer({ is: "larapoly-string-inline",
+
             properties: {
                 message:           { type: String },
                 validationMessage: { type: String, value: "" },
@@ -380,6 +341,7 @@
                 max:               { type: String },
                 statusColor:       { type: String, value: "input-group" }
             },
+
             messageChanged: function() {
                 var trimmedMessage = this.message.trim();
                 if (trimmedMessage.length < this.min) {
@@ -394,6 +356,7 @@
                     this.inputGroupClass = "input-group";
                 }
             },
+
             ready: function () {
                 this.message = this.value;
                 this.inputGroupClass = "input-group";
@@ -438,9 +401,7 @@
 
         function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
 
-        Polymer({
-
-            is: "larapoly-dec-to-frac",
+        Polymer({ is: "larapoly-dec-to-frac",
 
             properties: {
                 userstring:  { type: String },
@@ -543,9 +504,7 @@
 
         function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
 
-        Polymer({
-
-            is: "larapoly-dec-to-frac-ro",
+        Polymer({ is: "larapoly-dec-to-frac-ro",
 
             properties: {
                 fifracString: { type: String },
