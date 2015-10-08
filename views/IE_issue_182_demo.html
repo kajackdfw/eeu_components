@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+        <link rel="import" href="../web_components/larapoly.html">
+        <link rel="import" href="../web_components/my-custom-web-components.html">
+
+        <link rel="stylesheet" href="../css/eeu_components.css">
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="../bower_components/bootstrap/js/dropdown.js" ></script>
+        <script>
+
+            var larapolyDoubleSelectData = [
+                {"type": "History"  ,"name":"WWI In Thirty Words!", "id":"22"},
+                {"type": "History"  ,"name":"WWII In Thirty Words!" , "id":"23"},
+                {"type": "Computers","name":"Fixing Laravel with Polymer", "id":"50"},
+                {"type": "Computers","name":"What I hate about MVC"       , "id":"51"}
+            ];
+            var larapolyDoubleSelectTypes = new Array(); // Let the first wc executed initialize this array
+
+        </script>
+
+    </head>
+    <body>
+
+        <div class="body_container">
+
+            <div class="fluid">
+
+                <div class="col-lg-3">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Sample Form</div>
+                        <div class="panel-body">
+                            <form class="form">
+                                <larapoly-double-select name="ebook[2]" label="Material" typename="Book" id="22" ></larapoly-double-select>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </body>
+</html>
