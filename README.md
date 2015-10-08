@@ -60,12 +60,12 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
- 1. Make larapoly-double-select 100% dynamic.
- 2. Combine larapoly-dec-to-frac-ro code into a single larapoly-dec-to-frac with a ro=true param.
- 3. Clean up responsive form style support ( inline or non-inline style )
+ 0. Combine larapoly-dec-to-frac-ro code into a single larapoly-dec-to-frac with a ro=true param.
+ 0. Clean up responsive form style support ( inline or non-inline style )
  
 ## Updates
 
+ 9. 10/07/2015 | Made larapoly-double-select 100% dynamic. ( 580 lines in larapoly.html ) 
  8. 10/06/2015 | Removed all inline style code. 
  7. 10/04/2015 | New larapoly-double-select web component 
  6. 9/27/2015 | new Laravel dedicated fork at https://github.com/kajackdfw/larapoly 
