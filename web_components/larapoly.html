@@ -46,9 +46,9 @@
                         <li><a on-click=newselection id="{{item.id}}" >{{item.name}}</a></li>
                     </template>
 
-                    <template is="dom-if" if="[[typeSelected]]">
+                    <template is="dom-if" if="[[selectedType]]">
                         <li role="separator" class="divider"></li>
-                        <li><a on-click=newtype data-type="none">Change from <b>{{typeSelected}}</b> to ...</a></li>
+                        <li><a on-click=newtype data-type="none">Change from <b>{{selectedType}}</b> to ...</a></li>
                     </template>
 
                     <template is="dom-if" if="[[noType]]">
@@ -142,8 +142,45 @@
                         this.selectedid = newId ;
                         this.selectedname = newName ;
                         this.typeName = newType ;
+                        var newTypeSelected = newType ;
                     }
                 }
+
+                // What are the alternate choices, in case the user wants to change it
+                /*
+                var expectedChoices = 0;
+
+                $.each(this.selectData, function (index, value)
+                {
+                    if (value['type'] == newTypeSelected) {
+                        expectedChoices = expectedChoices + 1;
+                    }
+                });
+
+
+                if( expectedChoices > 0 )
+                {
+                    this.noType = false ;
+                }
+                else
+                {
+                    this.noType = true ;
+                }
+
+                var newCtr = -1;
+                var newArray = new Array( expectedChoices );
+                $.each( this.selectData, function( index, value )
+                {
+                    if( value['type'] == newTypeSelected )
+                    {
+                        newCtr = newCtr + 1;
+                        newArray[newCtr] = new Array(2);
+                        newArray[newCtr]['id'] = value['id'];
+                        newArray[newCtr]['name'] = value['name'];
+                    }
+                });
+                this.itemChoices = newArray ;
+                */
 
                 // Activate the bs drop down for the user
                 $('.dropdown-toggle').dropdown();
