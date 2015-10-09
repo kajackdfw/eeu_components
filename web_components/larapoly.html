@@ -32,8 +32,8 @@
 
         <div class="btn-group">
 
-            <input type="text" class="btn btn-default btn-input" placeholder="[[placeholdertext]]" value$="{{selectedname::input}}" readonly >
-            <input type="hidden" value="[[selectedid]]" name="[[name]]" >
+            <input type="text" class="btn btn-default btn-input" placeholder="[[placeholdertext]]" value="[[selectedname::input]]" readonly >
+            <input type="hidden" value$="[[selectedid]]" name="[[name]]" >
 
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                 <span class="caret"></span>
@@ -114,21 +114,30 @@
                 if( this.id > 0 )
                 {
                     var idIndex = this.id ;
+                    var newId = 0;
+                    var newName = '';
+                    var newType = '';
                     $.each(this.selectData, function( index, value )
                     {
                         if( idIndex == value['id'] )
                         {
-                            this.selectedid = value['id'];
-                            this.selectedname = value['name'];
-                            this.typeSelected = value['type'];
-                            this.placeholdertext = value['name'] ;
-                            this.noType = false ;
-                            console.log( idIndex + ' id value matches ' + value['name'] )
+                            newId = value['id'];
+                            newName = value['name'];
+                            newType = value['type'];
                         }
                     });
+
+                    if( newId > 0 )
+                    {
+                        this.selectedid = newId ;
+                        this.selectedname = newName ;
+                        this.typeName = newType ;
+                    }
                 }
+                console.log( this.selectedname + ' = ' + this.selectedid );
 
                 $('.dropdown-toggle').dropdown();
+                return true;
             },
 
             newselection: function () {
