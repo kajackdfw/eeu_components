@@ -67,28 +67,36 @@
             is: "larapoly-double-select",
 
             properties: {
+                // Input fields
                 name:            { type: String },
                 id:              { type: String },
                 label:           { type: String },
-                selectData:      { type: Array },
                 typename:        { type: String },
+                selectData:      { type: Array },
+
+                // Drop down data
+                selectedType:    { type: String },
+                typeChoices:     { type: Array },
+                itemChoices:     { type: Array },
+
+                // Output fields
                 selectedname:    { type: String },
                 selectedid:      { type: String },
-                typeSelected:    { type: String },
-                typeChoices:     { type: Array },
-                typeChoice:      { type: String, value: "Select Matl" },
-                itemChoices:     { type: Array },
+                placeholdertext: { type: String },
+
+                // script logic fields
                 noType:          { type: Boolean, value: true },
-                noSelection:     { type: Boolean, value: false },
-                placeholdertext: { type: String }
+                noSelection:     { type: Boolean, value: false }
+
             },
 
             ready: function() {
 
                 this.selectData = larapolyDoubleSelectData ;
+
+                // Has the Select Types been populated with data yet? Do this once for all occurrences of this wc
                 if( larapolyDoubleSelectTypes.length == 0 && larapolyDoubleSelectData.length > 0 )
                 {
-                    //console.log('Types are empty, so populate them!');
                     var typePos ;
                     var typeWord ;
                     var typeString = ':';
@@ -106,11 +114,11 @@
                     larapolyDoubleSelectTypes.sort();
                 }
 
+                // Get the type data from the parent page
                 this.typeChoices = larapolyDoubleSelectTypes;
                 this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
 
-                // Is id preset and valid ?
-                //console.log( 'id = ' + this.id );
+                // Is there an id value in the wc tag? and valid ?
                 if( this.id > 0 )
                 {
                     var idIndex = this.id ;
@@ -119,6 +127,7 @@
                     var newType = '';
                     $.each(this.selectData, function( index, value )
                     {
+                        // match the id to our data
                         if( idIndex == value['id'] )
                         {
                             newId = value['id'];
@@ -127,6 +136,7 @@
                         }
                     });
 
+                    // set our output fields to the valid match
                     if( newId > 0 )
                     {
                         this.selectedid = newId ;
@@ -134,8 +144,8 @@
                         this.typeName = newType ;
                     }
                 }
-                //console.log( this.selectedname + ' = ' + this.selectedid );
 
+                // Activate the bs drop down for the user
                 $('.dropdown-toggle').dropdown();
                 return true;
             },
@@ -187,13 +197,13 @@
                     var newTypeSelected = 'none';
                     this.noType = true ;
                     this.itemChoices = new Array();
-                    this.typeSelected = '';
+                    this.selectedType = '';
                     this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
                     return ;
                 }
 
 
-                this.typeSelected = newTypeSelected ;
+                this.selectedType = newTypeSelected ;
 
                 var expectedChoices = 0;
 
@@ -292,7 +302,6 @@
 <dom-module id="larapoly-string">
 
     <template>
-
         <div class$="{{formGroupClass}}">
             <label class="control-label" for="inputError1">{{validationMessage}}</label>
             <input type="text" class="form-control" id="inputError1" value="{{message::input}}" placeholder="{{label}}" on-keyup="messageChanged">
@@ -420,7 +429,7 @@
             <label for="userstring">{{label}}</label>
 
             <div class$="{{statusColor}}">
-                <!-- use the ::input extension to Bind this native html input field to our web component -->
+                <!-- use the ::input extension to Bind this native html input field -->
                 <input type="text" id="userstring"
                        name="{{name}}"
                        value="{{userstring::input}}"
@@ -434,8 +443,6 @@
     </template>
 
     <script>
-
-        //function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
 
         Polymer({ is: "larapoly-dec-to-frac",
 
@@ -538,8 +545,6 @@
 
     <script>
 
-        //function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
-
         Polymer({ is: "larapoly-dec-to-frac-ro",
 
             properties: {
@@ -608,5 +613,3 @@
     </script>
 
 </dom-module>
-
-
