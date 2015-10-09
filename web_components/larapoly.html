@@ -32,7 +32,7 @@
 
         <div class="btn-group">
 
-            <input type="text" class="btn btn-default btn-input" placeholder="[[placeholdertext]]" value="[[selectedname]]" readonly >
+            <input type="text" class="btn btn-default btn-input" placeholder="[[placeholdertext]]" value$="{{selectedname::input}}" readonly >
             <input type="hidden" value="[[selectedid]]" name="[[name]]" >
 
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -68,6 +68,7 @@
 
             properties: {
                 name:            { type: String },
+                id:              { type: String },
                 label:           { type: String },
                 selectData:      { type: Array },
                 typename:        { type: String },
@@ -107,6 +108,26 @@
 
                 this.typeChoices = larapolyDoubleSelectTypes;
                 this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
+
+                // Is id preset and valid ?
+                console.log( 'id = ' + this.id );
+                if( this.id > 0 )
+                {
+                    var idIndex = this.id ;
+                    $.each(this.selectData, function( index, value )
+                    {
+                        if( idIndex == value['id'] )
+                        {
+                            this.selectedid = value['id'];
+                            this.selectedname = value['name'];
+                            this.typeSelected = value['type'];
+                            this.placeholdertext = value['name'] ;
+                            this.noType = false ;
+                            console.log( idIndex + ' id value matches ' + value['name'] )
+                        }
+                    });
+                }
+
                 $('.dropdown-toggle').dropdown();
             },
 
