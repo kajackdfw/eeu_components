@@ -31,31 +31,32 @@ The purpose for this project is to provide a uniform set of web components for E
  10. Do not duplicate any HTML5 tags or their functionality ( wrappers or an alias may be considered )
   
 ## Groups / Component Files
- 1. eeu_html_bootstrap.html ( generic html with Bootstrap css )
- 2. ~~eeu_blade_bootstrap.html~~ Will move to a dedicated repo, 
- 3. eeu_html_paper.html 
+ 1. larapoly.html ( Laravel compatible with Bootstrap css )
+ 2. eeu_html_paper.html 
  
 ## Project Status
  Putting this on hold until late October, while completing LaraPoly for alpha release.
  
-## Web Components ( html tags ) working in eeu_html_bootstrap.html
- 1. eeu-display-dec-fifrac ( display feet inches and fraction for a decimal value )
- 2. eeu-input-dec-fifrac ( decimal input field value with feet inches and fraction label )
- 3. eeu-string and eeu-string-inline
+## Web Components ( html tags ) working in larapoly.html
+ 1. larapoly-display-dec-fifrac ( display feet inches and fraction for a decimal value )
+ 2. larapoly-input-dec-fifrac ( decimal input field value with feet inches and fraction label )
+ 3. larapoly-string and larapoly-string-inline
+ 4. larapoly-alert
+ 5. larapoly-double-select
  
 ## Web Components being considered for eeu_html_bootstrap ( html tags )
- 1. eeu-input-fifrac-dec ( fifrac in , with field value set to decimal equivalent ) 
- 2. eeu-input-rest-validated ( backend validated input field )
- 3. eeu-input-combo 
- 4. eeu-input-date ( submits unix format to app, and displays selected format to user )
- 5. eeu-submit-if-fields-valid ( eliminate need for custom jquery scripts to disable submit button )
+ 1. *-input-fifrac-dec ( fifrac in , with field value set to decimal equivalent ) 
+ 2. *-input-rest-validated ( backend validated input field )
+ 3. *-input-combo 
+ 4. *-input-date ( submits unix format to app, and displays selected format to user )
+ 5. *-submit-if-fields-valid ( eliminate need for custom jquery scripts to disable submit button )
  
 ## Planned Features
 
  1. Support Input types like fifrac ( Feet Inches and Fractions )
  2. User Input Feedback / Front end validation messages
  3. Ajax support for validation via backend/rest service, or get serialized validation info from server
- 4. Some simple input types with data transformers , such as eeu-input-date
+ 4. Some simple input types with data transformers , such as *-input-date
  5. Request for special fields like IP numbers will be considered if request sent to kajackdfw@yahoo.com .
  
 ## Fixme / Todos
@@ -72,7 +73,7 @@ The purpose for this project is to provide a uniform set of web components for E
  7. 10/04/2015 | New larapoly-double-select web component 
  6. 9/27/2015 | new Laravel dedicated fork at https://github.com/larapoly/larapoly 
  5. 9/20/2015 | eeu_blade_bootstrap.html will be forked to a new Laravel only repo. 
- 4. 9/18/2015 | Enhanced error messages for eeu-string. eeu-string-inline needs more error red css. 
+ 4. 9/18/2015 | Enhanced error messages for *-string. *-string-inline needs more error red css. 
  3. 9/13/2015 | Had an excellent proof of concept test in my Laravel site with Polymer 
  2. 9/10/2015 | New outline of planned components on index.html page 
  1. 9/01/2015 | Removed the Iron Element dependency from eeu_html_bootstrap.html ( rule #9 violation ) 
