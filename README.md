@@ -65,7 +65,7 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Updates
 
- 0. 10/09/2015 | Option pre-selected for laravel-double-select when the id value is initially provided. ( 615 Lines )
+ 0. 10/09/2015 | Option selected for double-select when the id value is initially provided. (634 Lines)
  0. 10/08/2015 | Created a demo page for web component issue 182
  9. 10/07/2015 | Made larapoly-double-select 100% dynamic. ( 580 lines in larapoly.html ) 
  8. 10/06/2015 | Removed all inline style code. 

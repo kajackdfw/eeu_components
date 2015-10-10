@@ -8,7 +8,45 @@
 
     function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
 
+    function getDoubleSelectChoices( newTypeSelected ) {
+        var expectedChoices = 0;
+        var selectData = larapolyDoubleSelectData ;
+
+        // Count the matches so we know how big to make the array
+        $.each( selectData, function (index, value)
+        {
+            if (value['type'] == newTypeSelected) {
+                expectedChoices = expectedChoices + 1;
+            }
+        });
+
+        if( expectedChoices > 0 )
+        {
+            var newCtr = -1;
+            var newArray = new Array( expectedChoices );
+            $.each( selectData, function( index, value )
+            {
+                if( value['type'] == newTypeSelected )
+                {
+                    newCtr = newCtr + 1;
+                    newArray[newCtr] = new Array(2);
+                    newArray[newCtr]['id'] = value['id'];
+                    newArray[newCtr]['name'] = value['name'];
+                    return newArray ;
+                }
+            });
+            return newArray ;
+        }
+        else
+        {
+            this.noType = true ;
+            //var newArray = new Array();
+            return new Array();
+        }
+    }
+
 </script>
+
 
 <dom-module id="larapoly-double-select">
 
@@ -142,45 +180,13 @@
                         this.selectedid = newId ;
                         this.selectedname = newName ;
                         this.typeName = newType ;
+                        this.selectedType = newType ;
+                        this.typeChoices = larapolyDoubleSelectTypes ;
+                        this.noType = false ;
+                        this.itemChoices = getDoubleSelectChoices( newType ) ;
                         var newTypeSelected = newType ;
                     }
                 }
-
-                // What are the alternate choices, in case the user wants to change it
-                /*
-                var expectedChoices = 0;
-
-                $.each(this.selectData, function (index, value)
-                {
-                    if (value['type'] == newTypeSelected) {
-                        expectedChoices = expectedChoices + 1;
-                    }
-                });
-
-
-                if( expectedChoices > 0 )
-                {
-                    this.noType = false ;
-                }
-                else
-                {
-                    this.noType = true ;
-                }
-
-                var newCtr = -1;
-                var newArray = new Array( expectedChoices );
-                $.each( this.selectData, function( index, value )
-                {
-                    if( value['type'] == newTypeSelected )
-                    {
-                        newCtr = newCtr + 1;
-                        newArray[newCtr] = new Array(2);
-                        newArray[newCtr]['id'] = value['id'];
-                        newArray[newCtr]['name'] = value['name'];
-                    }
-                });
-                this.itemChoices = newArray ;
-                */
 
                 // Activate the bs drop down for the user
                 $('.dropdown-toggle').dropdown();
@@ -239,20 +245,10 @@
                     return ;
                 }
 
-
+                // Item selected, now be prepared for edits
                 this.selectedType = newTypeSelected ;
-
-                var expectedChoices = 0;
-
-                $.each(this.selectData, function (index, value)
-                {
-                    if (value['type'] == newTypeSelected) {
-                        expectedChoices = expectedChoices + 1;
-                    }
-                });
-
-
-                if( expectedChoices > 0 )
+                this.itemChoices = getDoubleSelectChoices( newTypeSelected ) ;
+                if( newTypeSelected.length > 0 )
                 {
                     this.noType = false ;
                 }
@@ -260,20 +256,6 @@
                 {
                     this.noType = true ;
                 }
-
-                var newCtr = -1;
-                var newArray = new Array( expectedChoices );
-                $.each( this.selectData, function( index, value )
-                {
-                    if( value['type'] == newTypeSelected )
-                    {
-                        newCtr = newCtr + 1;
-                        newArray[newCtr] = new Array(2);
-                        newArray[newCtr]['id'] = value['id'];
-                        newArray[newCtr]['name'] = value['name'];
-                    }
-                });
-                this.itemChoices = newArray ;
             }
         });
 
