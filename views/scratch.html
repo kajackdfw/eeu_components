@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <script src="../bower_components/webcomponentsjs/webcomponents.min.js"></script>
+        <link rel="stylesheet" href="../css/bootstrap-theme.min.css">
+        <link rel="import" href="../web_components/larapoly.html">
+        <link rel="import" href="../web_components/my-custom-web-components.html">
+
+        <link rel="stylesheet" href="../css/eeu_components.css">
+        <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="../bower_components/bootstrap/js/dropdown.js" ></script>
+        <script>
+
+            var larapolyDoubleSelectData = [
+                {"type": "Aluminum","name":"Angle 2'' x 2''  1/4''", "id":"34"},
+                {"type": "Wood"    ,"name":"2\" x 4\" Stud"        , "id":"95"},
+                {"type": "Steel"   ,"name":"C6\" x 8.2"            , "id":"64"},
+                {"type": "Steel"   ,"name":"1/4\" x 2\" Bar"       , "id":"65"},
+                {"type": "Aluminum","name":"Angle 3\" x 3\"  1/4\"", "id":"35"},
+                {"type": "Steel"   ,"name":"1/4\" x 3\" Bar"       , "id":"66"}
+            ];
+            var larapolyDoubleSelectTypes = new Array(); // Let the first wc executed initialize this array
+
+        </script>
+
+    </head>
+    <body>
+
+        <my-header></my-header>
+        <div class="body_container">
+
+            <div class="fluid">
+
+                <div class="col-lg-5">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Date Horizontal Spinners</div>
+                        <div class="panel-body">
+                            <form class="form">
+
+                                <div class="btn-group" role="group" aria-label="...">
+                                    <button type="button" class="btn btn-default" style="height: 40px;">-1 W</button>
+                                    <button type="button" class="btn btn-default" style="height: 40px;">-1 D</button>
+                                    <button type="button" class="btn btn-default"><input type="text" class="control_group" value="Tuesday Feb 30, 2025"></button>
+                                    <button type="button" class="btn btn-default" style="height: 40px;">+1 D</button>
+                                    <button type="button" class="btn btn-default" style="height: 40px;">+1 W</button>
+                                </div>
+
+                                <div class="fluid btn btn-default" style="width: 200px; height: 40px; padding: 2px;">
+                                    <div class="pull-left" style="width: 100px; padding: 5px;">
+                                        <input type="text" class="control_group" value="Feb 30 , 2025" style="width: 95px;">
+                                    </div>
+                                    <div class="pull-left" style="width: 50px; height: 18px;" ><a href="">+Week</a></div>
+                                    <div class="pull-left" style="width: 40px; height: 18px;" ><a href="">+Day</a></div>
+                                    <div class="pull-left" style="width: 50px; height: 18px;" ><a href="">-Week</a></div>
+                                    <div class="pull-left" style="width: 40px; height: 18px;" ><a href="">-Day</a></div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </div>
+    </body>
+</html>
