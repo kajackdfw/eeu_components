@@ -267,25 +267,9 @@
 <dom-module id="larapoly-alert" >
 
     <template>
-
-        <template is="dom-if" if="[[successmessage]]">
-            <div class="alert alert-success" role="alert">
-                <span>{{message}}</span>
-            </div>
-        </template>
-
-        <template is="dom-if" if="[[errormessage]]">
-            <div class="alert alert-danger" role="alert">
-                <span>{{message}}</span>
-            </div>
-        </template>
-
-        <template is="dom-if" if="[[warningmessage]]">
-            <div class="alert alert-warning" role="alert">
-                <span>{{message}}</span>
-            </div>
-        </template>
-
+        <div class$="[[class]]" role="alert">
+            <span>{{message}}</span>
+        </div>
     </template>
 
     <script>
@@ -294,22 +278,20 @@
 
             properties: {
                 message:        { type: String },
+                class:          { type: String },
                 messagetype:    { type: String },
-                successmessage: { type: Boolean, value: false },
-                warningmessage: { type: Boolean, value: false },
-                errormessage:   { type: Boolean, value: false },
             },
 
             ready: function() {
                 if( this.messagetype == 'success' ) {
-                    this.successmessage = true ;
+                    this.class = "alert alert-info";
                 }
                 else if( this.messagetype == 'error' ) {
-                    this.errormessage = true ;
+                    this.class = "alert alert-danger"
                 }
                 else if( this.messagetype == 'warning' )
                 {
-                    this.warningmessage = true ;
+                    this.class = "alert alert-warning"
                 }
             }
         });
