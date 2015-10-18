@@ -45,7 +45,124 @@
         }
     }
 
+    function unixDateToJsDate( unixDateTime, includeTime )
+    {
+        var unixWords = unixDateTime.split(' ');
+
+        if ( unixWords.length < 1 ) { return -1 ; }
+        else if( unixWords.length > 2 ) { return -1 ; } // invalid unix date time, not like 2015-10-18 10:00:00 or 2015-10-17
+        else {
+            var datePieces = unixWords[0].split("-");
+
+            if( isNumeric(datePieces[2]) && datePieces[2] > 0 && datePieces[2] < 32 &&
+                isNumeric(datePieces[1]) && datePieces[1] > 0 && datePieces[1] < 13 &&
+                isNumeric(datePieces[0]) && datePieces[0] > 0 && datePieces[0] < 2100  )
+            {
+                if( unixWords.length == 2 ) { var timePieces = unixWords[1].split(":"); }
+
+                if( includeTime == true && unixWords.length == 2 && timePieces.length == 3 &&
+                    isNumeric(timePieces[0]) && timePieces[0] >= 0 && timePieces[0] < 24 &&
+                    isNumeric(timePieces[1]) && timePieces[1] >= 0 && timePieces[1] < 60 &&
+                    isNumeric(timePieces[2]) && timePieces[2] >= 0 && timePieces[2] < 60
+                )
+                {
+                    var newJSDate = new Date(datePieces[0],datePieces[1] - 1 ,datePieces[2],
+                                             timePieces[0],timePieces[1],timePieces[2],0);
+                }
+                else
+                {
+                    var newJSDate = new Date(datePieces[0],datePieces[1] - 1 ,datePieces[2],0,0,0,0);
+                }
+                return newJSDate.getTime();
+            }
+            else
+            {
+                return -1 ;
+            }
+
+        }
+    }
+
 </script>
+
+
+
+<dom-module id="larapoly-date-select" >
+
+    <template>
+        <div class="btn-group">
+
+            <input type="text" class="btn btn-default btn-input" placeholder="[[placeholdertext]]" value="[[fancyDate]]" readonly >
+            <input type="hidden" value$="[[selectedid]]" name="[[fname]]" >
+
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                <span class="caret"></span>
+                <span class="sr-only">Toggle Dropdown</span>
+            </button>
+
+            <ul class="dropdown-menu">
+                <li><a on-click=newDate param="today">Today</a></li>
+                <li><a on-click=newDate param="none">Clear</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a on-click=addDay param="1">+Day</a></li>
+                <li><a on-click=addDay param="7">+Week</a></li>
+                <li><a on-click=addMonth param="1">+Month</a></li>
+            </ul>
+        </div>
+    </template>
+    <script>
+        Polymer({
+
+            is: "larapoly-date-select",
+
+            properties: {
+                fancyDate: { type: String, value: 'Tuesday Feb 30, 2025' },
+                jsTimestamp: { type: String },
+                unixDate: { type: String},
+                name: { type: String },
+                value: { type: String },
+                placeholdertext: { type: String, value: 'No Date Set' },
+                placeholder: { type: String }
+            },
+            ready: function() {
+
+                // Is there a unix value already
+                if( this.value.length > 0 )
+                {
+                    var jsDateObj = new Date( unixDateToJsDate( this.value ) );
+                    this.fancyDate = jsDateObj.toDateString() ;
+                }
+
+                this.placeholdertext = this.placeholder ;
+
+                console.log( 'placeholder = ' + this.placeholder );
+                $('.dropdown-toggle').dropdown();
+            },
+            newDate: function () {
+                if(typeof event.target.attributes['param'] !== 'undefined')
+                {
+                    var dateChange = String(event.target.attributes['param'].value);
+                    console.log('dateChange = ' + dateChange );
+                }
+                else
+                {
+                    return ;
+                }
+
+                if( dateChange == 'today' ) {
+                    jsDateObj = new Date();
+                    this.fancyDate = jsDateObj.toDateString() ;
+                }
+                else if ( dateChange == 'clear' || dateChange == 'none' ) {
+                    jsDateObj = null ;
+                    this.fancyDate = '' ;
+                }
+            }
+        });
+    </script>
+
+</dom-module>
+
 
 
 <dom-module id="larapoly-double-select">
@@ -106,8 +223,8 @@
 
             properties: {
                 // Input fields
-                name:            { type: String },
-                id:              { type: String },
+                fname:            { type: String },
+                value:              { type: String },
                 label:           { type: String },
                 typename:        { type: String },
                 selectData:      { type: Array },
@@ -157,9 +274,9 @@
                 this.placeholdertext = 'Choose a '+ this.typename + ' Type.';
 
                 // Is there an id value in the wc tag? and valid ?
-                if( this.id > 0 )
+                if( this.value > 0 )
                 {
-                    var idIndex = this.id ;
+                    var idIndex = this.value ;
                     var newId = 0;
                     var newName = '';
                     var newType = '';
