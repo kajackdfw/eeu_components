@@ -106,7 +106,7 @@
                 <li role="separator" class="divider"></li>
                 <li><a on-click=addDay param="1">+Day</a></li>
                 <li><a on-click=addDay param="7">+Week</a></li>
-                <li><a on-click=addMonth param="1">+Month</a></li>
+                <li><a on-click=addDay param="31">+Month</a></li>
             </ul>
         </div>
     </template>
@@ -117,20 +117,22 @@
 
             properties: {
                 fancyDate: { type: String, value: 'Tuesday Feb 30, 2025' },
-                jsTimestamp: { type: String },
+                jsTimeStamp: { type: String },
                 unixDate: { type: String},
                 name: { type: String },
                 value: { type: String },
                 placeholdertext: { type: String, value: 'No Date Set' },
-                placeholder: { type: String }
+                placeholder: { type: String },
+                jsDateObj: { type: Date }
             },
             ready: function() {
 
                 // Is there a unix value already
                 if( this.value.length > 0 )
                 {
-                    var jsDateObj = new Date( unixDateToJsDate( this.value ) );
-                    this.fancyDate = jsDateObj.toDateString() ;
+                    this.jsDateObj = new Date( unixDateToJsDate( this.value ) );
+                    this.fancyDate = this.jsDateObj.toDateString();
+                    this.jsTimeStamp = this.jsDateObj.getTime();
                 }
 
                 this.placeholdertext = this.placeholder ;
@@ -142,7 +144,6 @@
                 if(typeof event.target.attributes['param'] !== 'undefined')
                 {
                     var dateChange = String(event.target.attributes['param'].value);
-                    console.log('dateChange = ' + dateChange );
                 }
                 else
                 {
@@ -150,12 +151,32 @@
                 }
 
                 if( dateChange == 'today' ) {
-                    jsDateObj = new Date();
-                    this.fancyDate = jsDateObj.toDateString() ;
+                    this.jsDateObj = new Date();
+                    this.fancyDate = this.jsDateObj.toDateString() ;
+                    this.jsTimeStamp = this.jsDateObj.getTime();
                 }
                 else if ( dateChange == 'clear' || dateChange == 'none' ) {
-                    jsDateObj = null ;
+                    this.jsDateObj = null ;
                     this.fancyDate = '' ;
+                    this.jsTimeStamp = 0 ;
+                }
+            },
+            addDay: function () {
+                if(typeof event.target.attributes['param'] !== 'undefined')
+                {
+                    var days = Number(event.target.attributes['param'].value) ;
+                    var dayShift = days * 86400000;
+                    if( this.jsDateObj.getMonth() == 5 && days == 31 )
+                    {
+                        dayShift = dayShift - 86400000 ;
+                    }
+                    this.jsTimeStamp = this.jsTimeStamp + ( dayShift ) ;
+                    this.jsDateObj = new Date( this.jsTimeStamp );
+                    this.fancyDate = this.jsDateObj.toDateString() ;
+                }
+                else
+                {
+                    return ;
                 }
             }
         });
