@@ -102,11 +102,19 @@
 
             <ul class="dropdown-menu">
                 <li><a on-click=newDate param="today">Today</a></li>
-                <li><a on-click=newDate param="none">Clear</a></li>
+                <li><a on-click=newDate param="tomorrow">Tomorrow</a></li>
+                <li><a on-click=newDate param="none">No Date / Clear</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a on-click=addDay param="1">+Day</a></li>
-                <li><a on-click=addDay param="7">+Week</a></li>
-                <li><a on-click=addDay param="31">+Month</a></li>
+
+                <li><a on-click=addDay param="1">Plus 1 Day</a></li>
+                <li><a on-click=addDay param="7">Plus 1 Week</a></li>
+                <li><a on-click=addDay param="31">Plus 1 Month</a></li>
+                <li><a on-click=addDay param="365">Plus 1 Year</a></li>
+
+                <li><a on-click=addDay param="-365">Minus 1 Year</a></li>
+                <li><a on-click=addDay param="-31">Minus 1 Month</a></li>
+                <li><a on-click=addDay param="-7">Minis 1 Week</a></li>
+                <li><a on-click=addDay param="-1">Minus 1 Day</a></li>
             </ul>
         </div>
     </template>
@@ -123,7 +131,10 @@
                 value: { type: String },
                 placeholdertext: { type: String, value: 'No Date Set' },
                 placeholder: { type: String },
-                jsDateObj: { type: Date }
+                jsDateObj: { type: Date },
+                rules: { type: String },
+                min: { type: Number, value: 0 },
+                max: { type: Number, value: 1892160000000 }
             },
             ready: function() {
 
@@ -133,6 +144,10 @@
                     this.jsDateObj = new Date( unixDateToJsDate( this.value ) );
                     this.fancyDate = this.jsDateObj.toDateString();
                     this.jsTimeStamp = this.jsDateObj.getTime();
+                }
+
+                if( this.past == 'no' ) {
+
                 }
 
                 this.placeholdertext = this.placeholder ;

@@ -61,9 +61,10 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
+ 0. Make min, max, and any other validation params, a Laravel style rule string like min:4|max:12 etc.
  0. Make alerts fade away after 90 seconds
  0. Combine larapoly-dec-to-frac-ro code into a single larapoly-dec-to-frac with a ro=true param.
- 0. Clean up responsive form style support ( inline or non-inline style )
+ 0. Clean up responsive form style support ( inline vs non-inline style )
  
 ## Updates
 
