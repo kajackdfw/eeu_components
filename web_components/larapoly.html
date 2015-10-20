@@ -6,6 +6,25 @@
 
 <script>
 
+    function unSerializeRules( serializedRule )
+    {
+        var ruleWords = serializedRule.split('|');
+        var rulePieces ;
+        var rules = new Array( ruleWords.length );
+        var ruleWord ;
+        for (var ruleCtr = 0; ruleCtr < ruleWords.length; ruleCtr++) {
+            ruleWord = ruleWords[ ruleCtr ] ;
+            rulePieces = ruleWord.split(":");
+
+            console.log( 'rulePieces[0] = ' + rulePieces[0] );
+            console.log( 'rulePieces[1] = ' + rulePieces[1] );
+
+            rules[ rulePieces[0].toString() ] = rulePieces[1].toString() ;
+        }
+        console.log( 'rules = ' + rules );
+        return rules ;
+    }
+
     function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
 
     function getDoubleSelectChoices( newTypeSelected ) {
@@ -151,8 +170,10 @@
                 }
 
                 this.placeholdertext = this.placeholder ;
-
-                console.log( 'placeholder = ' + this.placeholder );
+                if( this.rules != null && this.rules != '' ) {
+                    var rulesTest = unSerializeRules(this.rules);
+                    console.log('rules = ' + rulesTest);
+                }
                 $('.dropdown-toggle').dropdown();
             },
             newDate: function () {
