@@ -10,19 +10,17 @@
     {
         var ruleWords = serializedRule.split('|');
         var rulePieces ;
-        var rules = new Array( ruleWords.length );
+        var ruleObj = {};
         var ruleWord ;
         for (var ruleCtr = 0; ruleCtr < ruleWords.length; ruleCtr++) {
-            ruleWord = ruleWords[ ruleCtr ] ;
-            rulePieces = ruleWord.split(":");
-
-            console.log( 'rulePieces[0] = ' + rulePieces[0] );
-            console.log( 'rulePieces[1] = ' + rulePieces[1] );
-
-            rules[ rulePieces[0].toString() ] = rulePieces[1].toString() ;
+            rulePieces = ruleWords[ ruleCtr ].split(":");
+            switch( rulePieces[0].toString() ) {
+                case 'after':
+                case 'before': ruleObj[ rulePieces[0] ] = unixDateToJsTime( rulePieces[1] ); break;
+                default: ruleObj[ rulePieces[0] ] = rulePieces[1] ;
+            }
         }
-        console.log( 'rules = ' + rules );
-        return rules ;
+        return ruleObj ;
     }
 
     function isNumeric(n) { return !isNaN(parseFloat(n)) && isFinite(n); }
@@ -64,7 +62,7 @@
         }
     }
 
-    function unixDateToJsDate( unixDateTime, includeTime )
+    function unixDateToJsTime( unixDateTime, includeTime )
     {
         var unixWords = unixDateTime.split(' ');
 
@@ -160,7 +158,7 @@
                 // Is there a unix value already
                 if( this.value.length > 0 )
                 {
-                    this.jsDateObj = new Date( unixDateToJsDate( this.value ) );
+                    this.jsDateObj = new Date( unixDateToJsTime( this.value ) );
                     this.fancyDate = this.jsDateObj.toDateString();
                     this.jsTimeStamp = this.jsDateObj.getTime();
                 }
@@ -170,10 +168,16 @@
                 }
 
                 this.placeholdertext = this.placeholder ;
+
+                // import Laravel validation rules
                 if( this.rules != null && this.rules != '' ) {
-                    var rulesTest = unSerializeRules(this.rules);
-                    console.log('rules = ' + rulesTest);
+                    var rulesObj = unSerializeRules(this.rules);
+                    if( rulesObj.before != [undefined] ) { this.max = rulesObj.before ; }
+                    if( rulesObj.after != [undefined] ) { this.min = rulesObj.after ; }
                 }
+
+
+
                 $('.dropdown-toggle').dropdown();
             },
             newDate: function () {
