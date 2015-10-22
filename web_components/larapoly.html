@@ -11,7 +11,6 @@
         var ruleWords = serializedRule.split('|');
         var rulePieces ;
         var ruleObj = {};
-        var ruleWord ;
         for (var ruleCtr = 0; ruleCtr < ruleWords.length; ruleCtr++) {
             rulePieces = ruleWords[ ruleCtr ].split(":");
             switch( rulePieces[0].toString() ) {
@@ -107,9 +106,13 @@
 <dom-module id="larapoly-date-select" >
 
     <template>
+        <style>
+            .error_text { color: red; }
+        </style>
+
         <div class="btn-group">
 
-            <input type="text" class="btn btn-default btn-input" placeholder="[[placeholdertext]]" value="[[fancyDate]]" readonly >
+            <input type="text" class$="[[inputClass]]" placeholder="[[placeholdertext]]" value="[[fancyDate]]" readonly >
             <input type="hidden" value$="[[selectedid]]" name="[[fname]]" >
 
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
@@ -118,9 +121,15 @@
             </button>
 
             <ul class="dropdown-menu">
+                <li><a on-click=newDate param="none">No Date / Clear</a></li>
+                <template is="dom-if" if="[[min]]">
+                    <li><a on-click=newDate param="min">[[minDate]]</a></li>
+                </template>
                 <li><a on-click=newDate param="today">Today</a></li>
                 <li><a on-click=newDate param="tomorrow">Tomorrow</a></li>
-                <li><a on-click=newDate param="none">No Date / Clear</a></li>
+                <template is="dom-if" if="[[max]]">
+                    <li><a on-click=newDate param="max">[[maxDate]]</a></li>
+                </template>
                 <li role="separator" class="divider"></li>
 
                 <li><a on-click=addDay param="1">Plus 1 Day</a></li>
@@ -151,7 +160,10 @@
                 jsDateObj: { type: Date },
                 rules: { type: String },
                 min: { type: Number, value: 0 },
-                max: { type: Number, value: 1892160000000 }
+                minDate: { type: String },
+                max: { type: Number, value: 1892160000000 },
+                maxDate: { type: String },
+                inputClass: { type: String, value: "btn btn-default btn-input" }
             },
             ready: function() {
 
@@ -172,8 +184,18 @@
                 // import Laravel validation rules
                 if( this.rules != null && this.rules != '' ) {
                     var rulesObj = unSerializeRules(this.rules);
-                    if( rulesObj.before != [undefined] ) { this.max = rulesObj.before ; }
-                    if( rulesObj.after != [undefined] ) { this.min = rulesObj.after ; }
+
+                    if( rulesObj.before != [undefined] ) {
+                        this.max = rulesObj.before ;
+                        var newDate = new Date( this.max );
+                        this.maxDate = newDate.toDateString() + ' (latest)';
+                    }
+
+                    if( rulesObj.after != [undefined] ) {
+                        this.min = rulesObj.after ;
+                        var newDate = new Date( this.min );
+                        this.minDate = newDate.toDateString() + ' (earliest)';
+                    }
                 }
 
 
@@ -190,15 +212,15 @@
                     return ;
                 }
 
-                if( dateChange == 'today' ) {
-                    this.jsDateObj = new Date();
-                    this.fancyDate = this.jsDateObj.toDateString() ;
-                    this.jsTimeStamp = this.jsDateObj.getTime();
-                }
-                else if ( dateChange == 'clear' || dateChange == 'none' ) {
+                if ( dateChange == 'clear' || dateChange == 'none' ) {
                     this.jsDateObj = null ;
                     this.fancyDate = '' ;
                     this.jsTimeStamp = 0 ;
+                }
+                else if( dateChange == 'today' ) {
+                    this.jsDateObj = new Date();
+                    this.fancyDate = this.jsDateObj.toDateString() ;
+                    this.jsTimeStamp = this.jsDateObj.getTime();
                 }
             },
             addDay: function () {
@@ -218,7 +240,22 @@
                 {
                     return ;
                 }
+
+                if( this.min > this.jsTimeStamp ) {
+                    console.log('date is too old');
+                    this.inputClass = "btn btn-default btn-input error_text";
+                }
+                else if ( this.max < this.jsTimeStamp ) {
+                    console.log('date is too old');
+                    this.inputClass = "btn btn-default btn-input error_text";
+                }
+                else {
+                    console.log('date is ok');
+                    this.inputClass = "btn btn-default btn-input";
+                }
+
             }
+
         });
     </script>
 
@@ -481,61 +518,22 @@
 <dom-module id="larapoly-string">
 
     <template>
-        <div class$="{{formGroupClass}}">
-            <label class="control-label" for="inputError1">{{validationMessage}}</label>
-            <input type="text" class="form-control" id="inputError1" value="{{message::input}}" placeholder="{{label}}" on-keyup="messageChanged">
-        </div>
-    </template>
+        <template is="dom-if" if="[[isDefault]]">
+            <div class$="{{formGroupClass}}">
+                <label class="control-label" for="inputError1">{{validationMessage}}</label>
+                <input type="text" class="form-control" id="inputError1" value="{{message::input}}" placeholder="{{label}}" on-keyup="messageChanged">
+            </div>
+        </template>
 
-    <script>
-        Polymer({ is: "larapoly-string",
+        <template is="dom-if" if="[[isInline]]">
+            <style>
+                .form-inline > label { width: 6em; text-align: right; }
+                .form > label { width: 6em; text-align: right; }
+                div > input { width: 9em; }
+                div > .input-group-addon { width: 5em; }
+            </style>
 
-            properties: {
-                message:           { type: String },
-                validationMessage: { type: String, value: "" },
-                minLength:         { type: String },
-                maxLength:         { type: String },
-                formGroupClass:    { type: String, value: "form-group" },
-                label:             { type: String },
-                value:             { type: String },
-                min:               { type: String },
-                max:               { type: String }
-            },
-
-            messageChanged: function() {
-                var trimmedMessage = this.message.trim();
-                if (trimmedMessage.length < this.min || trimmedMessage.length > this.max ) {
-                    this.validationMessage = 'Must be between ' +
-                            this.min + ' and ' +
-                            this.max + ' characters.';
-                    this.formGroupClass = "form-group has-error";
-                } else {
-                    this.validationMessage = this.label;
-                    this.formGroupClass = "form-group";
-                }
-            },
-
-            ready: function () {
-                this.message = this.value;
-                this.validationMessage = this.label;
-            }
-        });
-    </script>
-
-</dom-module>
-
-
-<dom-module id="larapoly-string-inline">
-    <template>
-
-        <style>
-            .form-inline > label { width: 6em; text-align: right; }
-            .form > label { width: 6em; text-align: right; }
-            div > input { width: 9em; }
-            div > .input-group-addon { width: 5em; }
-        </style>
-
-        <div class$="{{inputGroupClass}}">
+            <div class$="{{inputGroupClass}}">
                 <!-- use the ::input extension to Bind this native html input field to our web component -->
                 <input type="text" id="message"
                        name="{{name}}"
@@ -544,52 +542,91 @@
                        class="form-control"
                        on-keyup="messageChanged"
                        aria-describedby="basic-addon2"
-                />
+                        />
                 <span class="input-group-addon" id="basic-addon2a" >{{validationMessage}}</span>
             </div>
-
+        </template>
     </template>
-    <script>
 
-        Polymer({ is: "larapoly-string-inline",
+    <script>
+        Polymer({ is: "larapoly-string",
 
             properties: {
                 message:           { type: String },
                 validationMessage: { type: String, value: "" },
-                minLength:         { type: String },
-                maxLength:         { type: String },
+                rules:             { type: String },
+                formGroupClass:    { type: String, value: "form-group" },
                 inputGroupClass:   { type: String, value: "input-group" },
                 label:             { type: String },
                 value:             { type: String },
                 min:               { type: String },
                 max:               { type: String },
-                statusColor:       { type: String, value: "input-group" }
+                fstyle:            { type: String },
+                isInline:          { type: Boolean, value: false },
+                isDefault:         { type: Boolean, value: true },
             },
 
             messageChanged: function() {
                 var trimmedMessage = this.message.trim();
-                if (trimmedMessage.length < this.min) {
+                if (this.isDefault && (trimmedMessage.length < this.min || trimmedMessage.length > this.max ))
+                {
+                    this.validationMessage = 'Must be between ' +
+                            this.min + ' and ' +
+                            this.max + ' characters.';
+                    this.formGroupClass = "form-group has-error";
+                }
+                else if( this.isDefault )
+                {
+                    this.validationMessage = this.label;
+                    this.formGroupClass = "form-group";
+                }
+                else if ( this.isInline && trimmedMessage.length < this.min)
+                {
                     this.validationMessage = this.min + ' min.';
                     this.inputGroupClass = "input-group has-error";
                 }
-                else if( trimmedMessage.length > this.max ) {
+                else if( this.isInline && trimmedMessage.length > this.max )
+                {
                     this.validationMessage = this.max + ' max.';
                     this.inputGroupClass = "input-group has-error";
-                } else {
+                }
+                else if( this.isInline )
+                {
                     this.validationMessage = '';
                     this.inputGroupClass = "input-group";
                 }
             },
 
-            ready: function () {
+            ready: function ()
+            {
                 this.message = this.value;
-                this.inputGroupClass = "input-group";
-            }
+                this.validationMessage = this.label;
 
+                if( this.fstyle.length > 0 )
+                {
+                    switch( this.fstyle )
+                    {
+                        case 'inline': this.isInline = true ; this.isDefault = false ; break ;
+                    }
+                }
+                else
+                {
+                    this.isInline = false ;
+                    this.isDefault = true ;
+                }
+
+                // import Laravel validation rules
+                if( this.rules != null && this.rules != '' )
+                {
+                    var rulesObj = unSerializeRules(this.rules);
+                    if( rulesObj.max != [undefined] ) { this.max = rulesObj.max ; }
+                    if( rulesObj.min != [undefined] ) { this.min = rulesObj.min ; }
+                }
+            }
         });
     </script>
-</dom-module>
 
+</dom-module>
 
 
 <dom-module id="larapoly-dec-to-frac" >
