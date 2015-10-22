@@ -61,13 +61,15 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
- 0. Make min, max, and any other validation params, a Laravel style rule string like min:4|max:12 etc.
- 0. Make alerts fade away after 90 seconds
- 0. Combine larapoly-dec-to-frac-ro code into a single larapoly-dec-to-frac with a ro=true param.
+ 0. Fix date-select hidden input field
  0. Clean up responsive form style support ( inline vs non-inline style )
+ 0. Make alerts fade away after 90 seconds, or drop this component
  
 ## Updates
 
+ 0. 10/22/2015 | Combine larapoly-dec-to-frac-ro code into a single larapoly-dec-to-frac with a ro=true param. (749 lines)
+ 0. 10/21/2015 | combined string and string-inline together (831 lines)
+ 0. 10/20/2015 | Made min, max, and any other validation params, a Laravel style rule string like min:4|max:12 etc. (795 lines)
  0. 10/09/2015 | Option selected for double-select when the id value is initially provided. (617 Lines)
  0. 10/08/2015 | Created a demo page for web component issue 182
  9. 10/07/2015 | Made larapoly-double-select 100% dynamic. ( 580 lines in larapoly.html ) 
