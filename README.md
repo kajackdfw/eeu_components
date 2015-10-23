@@ -5,7 +5,9 @@
 How many times have you built data models with validation rules on the backend, and later had to put in some unfamiliar js 
 library to do almost the same validation on the front end, to avoid making the user having to hit the submit button to see the validation messages. Or 
 have you gone to the trouble of creating a backend service so you could submit the entire form every time the user changes one
-field, so you could display the backend validation messages before the user hits the submit button? 
+field, so you could display the backend validation messages before the user hits the submit button? Or how many times did you have to
+write a data transformer to convert the users data into mysql compatible data, or the reverse of that? Screw all of that, web components
+can do all of that for you.
 
 ## Polymer Web Components for forms in MVC Application Views 
 
