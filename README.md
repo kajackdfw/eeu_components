@@ -61,6 +61,7 @@ The purpose for this project is to provide a uniform set of web components for E
  
 ## Fixme / Todos
  
+ 0. Remove invalid date choices when min or max is set.
  0. Clean up responsive form style support ( inline vs non-inline style )
  0. Make alerts fade away after 90 seconds, or drop this component
  

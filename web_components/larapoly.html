@@ -219,17 +219,29 @@
                     return ;
                 }
 
-                if ( dateChange == 'clear' || dateChange == 'none' ) {
-                    this.jsDateObj = null ;
-                    this.fancyDate = '' ;
-                    this.jsTimeStamp = 0 ;
-                    this.unixDate = '';
+                if( dateChange == 'min' ) {
+                    this.jsDateObj = new Date( this.min );
+                    this.fancyDate = this.jsDateObj.toDateString() ;
+                    this.jsTimeStamp = this.jsDateObj.getTime();
+                    this.setUnixDate();
+                }
+                else if( dateChange == 'max' ) {
+                    this.jsDateObj = new Date( this.max );
+                    this.fancyDate = this.jsDateObj.toDateString() ;
+                    this.jsTimeStamp = this.jsDateObj.getTime();
+                    this.setUnixDate();
                 }
                 else if( dateChange == 'today' ) {
                     this.jsDateObj = new Date();
                     this.fancyDate = this.jsDateObj.toDateString() ;
                     this.jsTimeStamp = this.jsDateObj.getTime();
                     this.setUnixDate();
+                }
+                else {
+                    this.jsDateObj = null ;
+                    this.fancyDate = '' ;
+                    this.jsTimeStamp = 0 ;
+                    this.unixDate = '';
                 }
             },
             addDay: function () {
