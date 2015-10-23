@@ -60,13 +60,13 @@ The purpose for this project is to provide a uniform set of web components for E
  5. Request for special fields like IP numbers will be considered if request sent to kajackdfw@yahoo.com .
  
 ## Fixme / Todos
- 
- 0. Remove invalid date choices when min or max is set.
+
  0. Clean up responsive form style support ( inline vs non-inline style )
  0. Make alerts fade away after 90 seconds, or drop this component
  
 ## Updates
 
+ 0. 10/23/2015 | Removed invalid date choices when min or max is set.
  0. 10/22/2015 | Combine larapoly-dec-to-frac-ro code into a single larapoly-dec-to-frac with a ro=true param. (749 lines)
  0. 10/21/2015 | combined string and string-inline together (831 lines)
  0. 10/20/2015 | Made min, max, and any other validation params, a Laravel style rule string like min:4|max:12 etc. (795 lines)
