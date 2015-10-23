@@ -131,9 +131,6 @@
                 <template is="dom-if" if="[[allowMinus7]]">   <li><a on-click=addDay param="-7">Minus 1 Week</a></li> </template>
                 <template is="dom-if" if="[[allowMinus31]]">  <li><a on-click=addDay param="-31">Minus 1 Month</a></li> </template>
                 <template is="dom-if" if="[[allowMinus365]]"> <li><a on-click=addDay param="-365">Minus 1 Year</a></li> </template>
-
-
-
             </ul>
         </div>
     </template>
@@ -218,25 +215,29 @@
                     return ;
                 }
 
-                if( dateChange == 'min' ) {
+                if( dateChange == 'min' )
+                {
                     this.jsDateObj = new Date( this.min );
                     this.fancyDate = this.jsDateObj.toDateString() ;
                     this.jsTimeStamp = this.jsDateObj.getTime();
                     this.setUnixDate();
                 }
-                else if( dateChange == 'max' ) {
+                else if( dateChange == 'max' )
+                {
                     this.jsDateObj = new Date( this.max );
                     this.fancyDate = this.jsDateObj.toDateString() ;
                     this.jsTimeStamp = this.jsDateObj.getTime();
                     this.setUnixDate();
                 }
-                else if( dateChange == 'today' ) {
+                else if( dateChange == 'today' )
+                {
                     this.jsDateObj = new Date();
                     this.fancyDate = this.jsDateObj.toDateString() ;
                     this.jsTimeStamp = this.jsDateObj.getTime();
                     this.setUnixDate();
                 }
-                else {
+                else
+                {
                     this.jsDateObj = null ;
                     this.fancyDate = '' ;
                     this.jsTimeStamp = 0 ;
@@ -262,7 +263,10 @@
                     this.refreshDropDown();
                     this.validateDate();
                 }
-                else { return ; }
+                else
+                {
+                    return ;
+                }
             },
             setUnixDate: function () { this.unixDate = this.jsDateObj.getFullYear() +'-'+ twoDigit( this.jsDateObj.getMonth() + 1) +'-'+ twoDigit(this.jsDateObj.getDate()) ; },
             validateDate: function () {
@@ -306,10 +310,12 @@
                     else if( ( this.jsTimeStamp + ( ONE_DAY * 7 )) > this.max ) {
                         this.allowPlus7 = false ; this.allowPlus31 = false ; this.allowPlus365 = false ;
                     }
-                    else if( ( this.jsTimeStamp + ( ONE_DAY * 31 )) > this.max ) {
+                    else if( ( this.jsTimeStamp + ( ONE_DAY * 30 )) > this.max && this.jsDateObj.getMonth() == 5 ) {
                         this.allowPlus31 = false ; this.allowPlus365 = false ;
                     }
-                    else if( ( this.jsTimeStamp + ( ONE_DAY * 365 )) > this.max ) {
+                    else if( ( this.jsTimeStamp + ( ONE_DAY * 31 )) > this.max && this.jsDateObj.getMonth() != 5 ) {
+                        this.allowPlus31 = false ; this.allowPlus365 = false ;
+                    }                    else if( ( this.jsTimeStamp + ( ONE_DAY * 365 )) > this.max ) {
                         this.allowPlus365 = false ;
                     }
                 }
