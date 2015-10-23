@@ -38,9 +38,9 @@ The purpose for this project is to provide a uniform set of web components for E
  Putting this on hold until late October, while completing LaraPoly for alpha release.
  
 ## Web Components ( html tags ) working in larapoly.html
- 1. larapoly-display-dec-fifrac ( display feet inches and fraction for a decimal value )
- 2. larapoly-input-dec-fifrac ( decimal input field value with feet inches and fraction label )
- 3. larapoly-string and larapoly-string-inline
+ 1. larapoly-date-select
+ 2. larapoly-input-dec-fifrac 
+ 3. larapoly-string
  4. larapoly-alert
  5. larapoly-double-select
  
@@ -48,7 +48,6 @@ The purpose for this project is to provide a uniform set of web components for E
  1. *-input-fifrac-dec ( fifrac in , with field value set to decimal equivalent ) 
  2. *-input-rest-validated ( backend validated input field )
  3. *-input-combo 
- 4. *-input-date ( submits unix format to app, and displays selected format to user )
  5. *-submit-if-fields-valid ( eliminate need for custom jquery scripts to disable submit button )
  
 ## Planned Features
