@@ -6,6 +6,13 @@
 
 <script>
 
+    function twoDigit( number)
+    {
+        var stringNum = number.toString() ;
+        if( stringNum.length == 1 ) { stringNum = "0" + stringNum ; }
+        return stringNum;
+    }
+
     function unSerializeRules( serializedRule )
     {
         var ruleWords = serializedRule.split('|');
@@ -173,7 +180,7 @@
                     this.fancyDate = this.jsDateObj.toDateString();
                     this.jsTimeStamp = this.jsDateObj.getTime();
                     //this.unixDate = this.value ;
-                    this.unixDate = this.jsDateObj.getFullYear() +'-'+ String( this.jsDateObj.getMonth() + 1) +'-'+ this.jsDateObj.getDate() ;
+                    this.unixDate = this.jsDateObj.getFullYear() +'-'+ twoDigit( this.jsDateObj.getMonth() + 1) +'-'+ twoDigit(this.jsDateObj.getDate()) ;
                 }
 
                 if( this.past == 'no' ) {
